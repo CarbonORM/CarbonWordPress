@@ -115,6 +115,8 @@ $addNewTag = static function ($tag, $versionBumpType): void {
 
         Background::executeAndCheckStatus("sed -i -e \"s/\"version\": \".*$\"/\"version\": \"$tag\"/\" $rootDir/composer.json || die 6 ");
 
+        Background::executeAndCheckStatus("git commit -m \"Changing our version in composer.json to ($tag).\" || die 8 ");
+
         // todo get the last major / minor release name and add it to patches automagically
         Background::executeAndCheckStatus("git tag -s -a $tag -m \"release: (" . $releaseName . ") revision: ($tag)\"");
 
