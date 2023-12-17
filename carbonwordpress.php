@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name: CarbonWordpress
+ * Plugin Name: CarbonWordPress
  * Plugin URI: https://www.carbonorm.dev/
  * Description: CarbonORM/CarbonPHP WordPress Plugin
  * Author: Richard Tyler Miles

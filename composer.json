@@ -1,6 +1,6 @@
 {
   "name": "carbonorm/carbonwordpress",
-  "description": "Wordpress bindings and GUI for CarbonPHP. A wordpress Plugin.",
+  "description": "WordPress bindings and GUI for CarbonPHP. A WordPress Plugin.",
   "type": "wordpress-muplugin",
   "license": "mit",
   "version": "0.0.3",
