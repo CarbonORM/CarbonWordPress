@@ -3,7 +3,7 @@
   "description": "Wordpress bindings and GUI for CarbonPHP. A wordpress Plugin.",
   "type": "library",
   "license": "mit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "autoload": {
     "psr-4": {
       "CarbonWordpress\\": "carbonwordpress/"
@@ -18,7 +18,8 @@
   "minimum-stability": "dev",
   "require": {
     "composer/installers": "^2.0@dev",
-    "carbonorm/carbonphp": "^18.1.0"
+    "carbonorm/carbonphp": "^18.1.0",
+    "wp-cli/wp-cli-bundle": "dev-main"
   },
   "extra": {
     "installer-paths": {
