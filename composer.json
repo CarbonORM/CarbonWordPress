@@ -28,6 +28,15 @@
       ]
     }
   },
+  "scripts": {
+    "post-install-cmd": [
+      "@githooks"
+    ],
+    "githooks": [
+      "git config core.hooksPath .githooks",
+      "chmod +x .githooks/*"
+    ]
+  },
   "config": {
     "allow-plugins": {
       "composer/installers": true
