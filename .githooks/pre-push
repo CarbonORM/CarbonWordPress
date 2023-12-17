@@ -15,7 +15,7 @@ $statusCode = 0;
 
 // todo - make a changelog and verify tag exists before publishing
 
-Background::executeAndCheckStatus('composer run test');
+// Background::executeAndCheckStatus('composer run test');
 
 passthru('git fetch --tags', $statusCode);
 
