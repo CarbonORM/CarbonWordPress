@@ -3,7 +3,7 @@
   "description": "WordPress bindings and GUI for CarbonPHP. A WordPress Plugin.",
   "type": "wordpress-muplugin",
   "license": "mit",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "autoload": {
     "psr-4": {
       "CarbonWordpress\\": "carbonwordpress/"
