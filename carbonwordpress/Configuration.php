@@ -1,6 +1,6 @@
 <?php
 
-namespace CarbonWordpress;
+namespace CarbonWordPress;
 
 use CarbonPHP\CarbonPHP;
 use CarbonPHP\Documentation;

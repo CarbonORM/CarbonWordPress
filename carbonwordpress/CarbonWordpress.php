@@ -2,7 +2,7 @@
 /*
  * Plugin Name: YOUR PLUGIN NAME
  */
-namespace CarbonWordpress;
+namespace CarbonWordPress;
 
 use CarbonPHP\Abstracts\ColorCode;
 use CarbonPHP\CarbonPHP;
@@ -10,7 +10,7 @@ use CarbonPHP\Documentation;
 use CarbonPHP\Interfaces\iColorCode;
 
 
-class CarbonWordpress
+class CarbonWordPress
 {
 
     public static bool $verbose = true;
