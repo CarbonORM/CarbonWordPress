@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a079e5ea936b17187d1513f504e48846",
+    "content-hash": "e4260e8ffbbc9555766e7209d054a38f",
     "packages": [
         {
             "name": "carbonorm/carbonphp",
