@@ -3,9 +3,10 @@
   "description": "Wordpress bindings and GUI for CarbonPHP. A wordpress Plugin.",
   "type": "library",
   "license": "mit",
+  "version": "0.0.1",
   "autoload": {
     "psr-4": {
-      "Carbonorm\\Carbonwordpress\\": "src/"
+      "CarbonWordpress\\": "carbonwordpress/"
     }
   },
   "authors": [

@@ -1,69 +1,18 @@
 <?php
-/*
- * Plugin Name: YOUR PLUGIN NAME
- */
 
-use CarbonPHP\Abstracts\ColorCode;
-use CarbonPHP\Application;
+namespace CarbonWordpress;
+
 use CarbonPHP\CarbonPHP;
 use CarbonPHP\Documentation;
-use CarbonPHP\Interfaces\iColorCode;
 use CarbonPHP\Interfaces\iConfig;
-use CarbonPHP\Programs\Deployment;
-use CarbonPHP\Programs\Migrate;
 use CarbonPHP\Tables\Carbons;
 
-// Composer autoload
-/** @noinspection UsingInclusionOnceReturnValueInspection */
-if (false === class_exists('CarbonPHP\Application')
-    && false === (include_once ABSPATH . 'vendor' . DS . 'autoload.php')) {
-
-    print '<h1>Composer Failed</h1>';
-
-    exit(2);
-
-}
-
-ColorCode::colorCode("Detected composer autoload in (" . __FILE__ . ')');
-
-function addCarbonPHPWordpressMenuItem(bool $advanced): void
-{
-    $notice = $advanced ? "<Advanced>" : "<Basic>";
-
-    add_action('admin_menu', static fn() => add_menu_page(
-        "CarbonPHP $notice" ,
-        "CarbonPHP $notice",
-        'edit_posts',
-        'CarbonPHP',
-        static function () {
-
-            print Documentation::inlineReact();
-
-        },
-        'dashicons-editor-customchar',
-        '4.5'
-    ));
-}
-
-CarbonPHP::$wordpressPluginEnabled = true;
-
-if (true === CarbonPHP::$setupComplete) {
-
-    addCarbonPHPWordpressMenuItem(true);
-
-    return true;
-
-}
-
-ColorCode::colorCode("Starting Full Wordpress CarbonPHP Configuration!",
-    iColorCode::BACKGROUND_CYAN);
-
-(new CarbonPHP(new class implements iConfig {
+class Configuration implements iConfig {
 
     public static function configuration(): array
     {
 
-        addCarbonPHPWordpressMenuItem(false);
+        CarbonWordpress::addCarbonPHPWordpressMenuItem(false);
 
         Documentation::$pureWordpressPluginConfigured = true;
 
@@ -127,28 +76,5 @@ ColorCode::colorCode("Starting Full Wordpress CarbonPHP Configuration!",
 
     }
 
-}, ABSPATH))(new class extends Application {
 
-    public function startApplication(string $uri): bool
-    {
-
-        if (Deployment::github()
-            || Migrate::enablePull([CarbonPHP::$app_root])) {
-
-            ColorCode::colorCode("CarbonPHP matched matched a route with the Wordpress Plugin Feature!");
-
-        }
-
-        return true;
-
-    }
-
-    public function defaultRoute(): void
-    {
-        // TODO: Implement defaultRoute() method.
-    }
-});
-
-ColorCode::colorCode("FINISHED Full Wordpress CarbonPHP Configuration!");
-
-return true;
+}
