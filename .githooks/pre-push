@@ -113,7 +113,7 @@ $addNewTag = static function ($tag, $versionBumpType): void {
 
         $rootDir = dirname(__DIR__);
 
-        Background::executeAndCheckStatus("sed -i 's/\"version\": \".*\"/\"version\": \"$tag\"/' $rootDir/composer.json");
+        Background::executeAndCheckStatus("sed -i '' 's/\"version\": \".*\"/\"version\": \"$tag\"/' $rootDir/composer.json");
 
         Background::executeAndCheckStatus("git commit -m \"Changing our version in composer.json to ($tag).\"");
 
