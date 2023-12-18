@@ -67,7 +67,7 @@ class CarbonWordPress
         }
 
         // todo - licensing!
-        addCarbonPHPWordpressMenuItem(true);
+        self::addCarbonPHPWordpressMenuItem(true);
 
         if (self::$verbose) {
 

@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name: CarbonWordPress
+ * Plugin Name: CarbonPHP WordPress Plugin
  * Plugin URI: https://www.carbonorm.dev/
  * Description: CarbonORM/CarbonPHP WordPress Plugin
  * Author: Richard Tyler Miles
@@ -22,9 +22,9 @@ function findComposerAutoload(): string
 {
     $currentLevel = 0;
 
-    do {
+    $currentDir = __DIR__;
 
-        $currentDir = dirname(__DIR__, $currentLevel);
+    do {
 
         // Check for standard vendor/autoload.php
         $standardAutoloadPath = $currentDir . '/vendor/autoload.php';
@@ -69,6 +69,7 @@ function findComposerAutoload(): string
 
         }
 
+        $currentDir = dirname(__DIR__, ++$currentLevel);
 
     } while ('/' !== $currentDir);
 
