@@ -7,7 +7,7 @@
  */
 
 use CarbonPHP\Abstracts\Composer;
-use CarbonWordpress\CarbonWordpress;
+use CarbonWordPress\CarbonWordPress;
 
 
 if (!defined('ABSPATH')) {
