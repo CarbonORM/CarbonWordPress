@@ -6,7 +6,6 @@ namespace CarbonWordPress;
 
 use CarbonPHP\Abstracts\ColorCode;
 use CarbonPHP\CarbonPHP;
-use CarbonPHP\Documentation;
 use CarbonPHP\Interfaces\iColorCode;
 
 
@@ -26,7 +25,28 @@ class CarbonWordPress
             'CarbonPHP',
             static function () {
 
-                print Documentation::inlineReact();
+                print  <<<HTML
+                <div id="root" style="height: 100%;">
+                </div>
+                <script>
+                    window.C6WordPress = true;
+                    const manifestURI = 'https://carbonorm.dev/';
+                    fetch(manifestURI + 'asset-manifest.json')
+                        .then(response => response.json())
+                        .then(data => {
+                            const entryPoints = data?.entrypoints || [];
+                            entryPoints.forEach((value => value.endsWith('.js')
+                                ?  jQuery.getScript( manifestURI + value )
+                                :  jQuery('<link/>',
+                                {
+                                    rel: 'stylesheet',
+                                    type: 'text/css',
+                                    href: manifestURI + value
+                                }).appendTo('head')
+                            ))
+                        });
+                </script>
+                HTML;
 
             },
             'dashicons-editor-customchar',
