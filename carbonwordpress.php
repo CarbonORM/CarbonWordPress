@@ -20,11 +20,18 @@ if (!defined('ABSPATH')) {
 
 function findComposerAutoload(): string
 {
+
+    if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+
+        return '/vendor/autoload.php';
+
+    }
+
     $currentLevel = 0;
 
-    $currentDir = __DIR__;
-
     do {
+
+        $currentDir = dirname(__DIR__, ++$currentLevel);
 
         // Check for standard vendor/autoload.php
         $standardAutoloadPath = $currentDir . '/vendor/autoload.php';
@@ -44,11 +51,12 @@ function findComposerAutoload(): string
 
         }
 
+
         try {
 
             $composerConfig = json_decode(file_get_contents($composerJsonPath), true, 512, JSON_THROW_ON_ERROR);
 
-        } catch (JsonException $e) {
+        } catch (Throwable $e) {
 
             print "<h1>Failed to parse your composer.json ($composerJsonPath). Please run <b>composer install</b>.</h1><pre>" . print_r($e, true) . '</pre>';
 
@@ -70,6 +78,9 @@ function findComposerAutoload(): string
         }
 
         $currentDir = dirname(__DIR__, ++$currentLevel);
+
+
+        print $currentDir;
 
     } while ('/' !== $currentDir);
 

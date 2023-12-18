@@ -37,6 +37,8 @@ class CarbonWordPress
     public static function make() : void
     {
 
+        $_ENV['CARBONORM_VERBOSE'] ??= true;
+
         if ($_ENV['CARBONORM_VERBOSE'] === 'false') {
 
             self::$verbose = false;
