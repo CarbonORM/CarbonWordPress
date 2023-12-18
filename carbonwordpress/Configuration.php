@@ -12,10 +12,6 @@ class Configuration implements iConfig {
     public static function configuration(): array
     {
 
-        CarbonWordpress::addCarbonPHPWordpressMenuItem(false);
-
-        Documentation::$pureWordpressPluginConfigured = true;
-
         $prefix = ABSPATH;
 
         $str = dirname(CarbonPHP::CARBON_ROOT);
