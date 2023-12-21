@@ -9,7 +9,6 @@ most technical.
 
 1) Search for CarbonPHP in the WordPress plugin store.
 2) Download the latest stable code as a zip from [GitHub](https://github.com/CarbonORM/CarbonWordPress).
-<img width="1523" alt="Screenshot 2023-12-21 at 2 47 40 AM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/c169b9c0-ea61-4626-a6d0-be342c21f8fc">
     - Log in to your WordPress account.
     - In the left-side menu, navigate to "Plugins" and click on it.
     - Choose the "Add New" option.
@@ -18,6 +17,9 @@ most technical.
     - Locate and pick the plugin's .zip file stored on your local computer.
     - Click "Open."
     - To commence the installation, click on "Install Now."
+<img width="1523" alt="Screenshot 2023-12-21 at 2 47 40 AM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/c169b9c0-ea61-4626-a6d0-be342c21f8fc">
+
+
 3) Clone the repository from GitHub (HTTPS or SSH) into your plugins directory.
     - Log in to your WordPress admin dashboard.
     - In the left-hand menu, click on "Plugins."
