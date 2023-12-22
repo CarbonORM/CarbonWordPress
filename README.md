@@ -7,7 +7,7 @@ A WordPress Plugin to provide a GUI for CarbonPHP.
 This is a general list of different ways to download the CarbonPHP framework. I've ordered them from least technical to
 most technical.
 
-1) Search for CarbonPHP in the WordPress plugin store.
+1) Search for CarbonPHP in the WordPress plugin store. (Pending review)
 2) Download the latest stable code as a zip from [GitHub](https://github.com/CarbonORM/CarbonWordPress).
     - Log in to your WordPress account.
     - In the left-side menu, navigate to "Plugins" and click on it.
