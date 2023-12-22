@@ -8,7 +8,9 @@ This is a general list of different ways to download the CarbonPHP framework. I'
 most technical.
 
 1) Search for CarbonPHP in the WordPress plugin store. (Pending review)
-2) Download the latest stable code as a zip from [GitHub](https://github.com/CarbonORM/CarbonWordPress).
+2) Download the latest stable code [directly as a zip](https://github.com/CarbonORM/CarbonWordPress/archive/refs/heads/main.zip
+   ) from [GitHub](https://github.com/CarbonORM/CarbonWordPress).
+   <img style='height: 100%; width: 100%; object-fit: contain' alt="Screenshot 2023-12-21 at 2 47 40 AM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/c169b9c0-ea61-4626-a6d0-be342c21f8fc">
     - Log in to your WordPress account.
     - In the left-side menu, navigate to "Plugins" and click on it.
     - Choose the "Add New" option.
@@ -19,7 +21,6 @@ most technical.
     - To commence the installation, click on "Install Now."
    
 
-<img style='height: 100%; width: 100%; object-fit: contain' alt="Screenshot 2023-12-21 at 2 47 40 AM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/c169b9c0-ea61-4626-a6d0-be342c21f8fc">
 
 3) Clone the repository from GitHub (HTTPS or SSH) into your plugin's directory (typically `wp-content/plugins`).
     - Log in to your WordPress admin dashboard.
@@ -33,7 +34,7 @@ most technical.
 git clone https://github.com/CarbonORM/CarbonWordPress.git
 ```
 
-It is recommended to use SSH version below if you have it set up. This will allow you to push changes to your own fork
+It is `recommended to use SSH version below` if you have it set up. This will allow you to push changes to your own fork
 of the repository.
 
 ```bash
