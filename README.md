@@ -19,7 +19,7 @@ most technical.
     - To commence the installation, click on "Install Now."
    
 
-<img width="auto" alt="Screenshot 2023-12-21 at 2 47 40 AM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/c169b9c0-ea61-4626-a6d0-be342c21f8fc">
+<img style='height: 100%; width: 100%; object-fit: contain' alt="Screenshot 2023-12-21 at 2 47 40 AM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/c169b9c0-ea61-4626-a6d0-be342c21f8fc">
 
 3) Clone the repository from GitHub (HTTPS or SSH) into your plugin's directory (typically `wp-content/plugins`).
     - Log in to your WordPress admin dashboard.
