@@ -1,3 +1,14 @@
+![PHP Version](https://img.shields.io/packagist/php-v/carbonorm/carbonwordpress)
+![GitHub Release](https://img.shields.io/github/v/release/carbonorm/carbonwordpress)
+![Packagist Version](https://img.shields.io/packagist/v/carbonorm/carbonwordpress)
+![License](https://img.shields.io/packagist/l/carbonorm/carbonwordpress)
+![Size](https://img.shields.io/github/languages/code-size/carbonorm/carbonwordpress)
+![Documentation](https://img.shields.io/website?down_color=lightgrey&down_message=Offline&up_color=green&up_message=Online&url=https%3A%2F%2Fcarbonorm.dev)
+![CarbonPHP Feature Test Suit](https://github.com/carbonorm/carbonwordpress/workflows/CarbonPHP%20Feature%20Test%20Suit/badge.svg)
+![Monthly Downloads](https://img.shields.io/packagist/dm/carbonorm/carbonwordpress)
+![All Downloads](https://img.shields.io/packagist/dt/carbonorm/carbonwordpress)
+![Star](https://img.shields.io/github/stars/carbonorm/carbonwordpress?style=social)
+
 # CarbonWordpress
 
 A WordPress Plugin to provide a GUI for CarbonPHP.
@@ -7,7 +18,7 @@ A WordPress Plugin to provide a GUI for CarbonPHP.
 This is a general list of different ways to download the CarbonPHP framework. I've ordered them from least technical to
 most technical.
 
-1) Search for CarbonPHP in the WordPress plugin store. (Pending review)
+1) ~~Search for CarbonPHP in the WordPress plugin store.~~ (Pending review)
 2) Download the latest stable code [directly as a zip](https://github.com/CarbonORM/CarbonWordPress/archive/refs/heads/main.zip
    ) from [GitHub](https://github.com/CarbonORM/CarbonWordPress).
    <img style='height: 100%; width: 100%; object-fit: contain' alt="Screenshot 2023-12-21 at 2 47 40 AM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/c169b9c0-ea61-4626-a6d0-be342c21f8fc">
