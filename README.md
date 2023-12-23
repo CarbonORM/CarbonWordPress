@@ -29,9 +29,6 @@ most technical.
     - Locate and pick the plugin's .zip file stored on your local computer.
     - Click "Open."
     - To commence the installation, click on "Install Now."
-   
-
-
 3) Clone the repository from GitHub (HTTPS or SSH) into your plugin's directory (typically `wp-content/plugins`).
     - Log in to your WordPress admin dashboard.
     - In the left-hand menu, click on "Plugins."
