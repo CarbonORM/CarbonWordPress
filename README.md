@@ -1,4 +1,4 @@
-![PHP Version](https://img.shields.io/packagist/php-v/carbonorm/carbonwordpress)
+![PHP Version](https://img.shields.io/packagist/php-v/carbonorm/carbonphp)
 ![GitHub Release](https://img.shields.io/github/v/release/carbonorm/carbonwordpress)
 ![Packagist Version](https://img.shields.io/packagist/v/carbonorm/carbonwordpress)
 ![License](https://img.shields.io/packagist/l/carbonorm/carbonwordpress)
