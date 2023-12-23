@@ -44,7 +44,7 @@ most technical.
 git clone https://github.com/CarbonORM/CarbonWordPress.git
 ```
 
-It is `recommended to use SSH version below` if you have it set up. This will allow you to push changes to your own fork
+It is `recommended to use SSH version below` if you have it [set up](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account). This will allow you to push changes to your own fork
 of the repository.
 
 ```bash
