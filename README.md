@@ -4,7 +4,6 @@
 ![License](https://img.shields.io/packagist/l/carbonorm/carbonwordpress)
 ![Size](https://img.shields.io/github/languages/code-size/carbonorm/carbonwordpress)
 ![Documentation](https://img.shields.io/website?down_color=lightgrey&down_message=Offline&up_color=green&up_message=Online&url=https%3A%2F%2Fcarbonorm.dev)
-![CarbonPHP Feature Test Suit](https://github.com/carbonorm/carbonwordpress/workflows/CarbonPHP%20Feature%20Test%20Suit/badge.svg)
 ![Monthly Downloads](https://img.shields.io/packagist/dm/carbonorm/carbonwordpress)
 ![All Downloads](https://img.shields.io/packagist/dt/carbonorm/carbonwordpress)
 ![Star](https://img.shields.io/github/stars/carbonorm/carbonwordpress?style=social)
