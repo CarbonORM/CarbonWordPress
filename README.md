@@ -10,7 +10,7 @@
 
 # CarbonWordpress
 
-A WordPress Plugin to provide a GUI for CarbonPHP.
+A WordPress Plugin to provide a GUI for CarbonPHP. This plugin is in active development and is not ready for public use.
 
 ## Download Options
 
