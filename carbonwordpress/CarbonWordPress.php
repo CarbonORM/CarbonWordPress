@@ -35,7 +35,7 @@ class CarbonWordPress
 
         }
 
-        (new CarbonPHP(Configuration::class, ABSPATH))(WordpressApplication::class);
+        (new CarbonPHP(Configuration::class, ABSPATH))(WordPressApplication::class);
 
         if (false === CarbonPHP::$setupComplete) {
 

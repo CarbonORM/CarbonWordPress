@@ -9,6 +9,11 @@
 use CarbonPHP\Abstracts\Composer;
 use CarbonWordPress\CarbonWordPress;
 
+/**
+ * The majority of this plugin is just to find and load composer.
+ * If it is not correctly loaded, we will attempt to fix it.
+ * todo - finding composer in the root but no c6 dependency required
+ */
 
 if (!defined('ABSPATH')) {
 
@@ -21,6 +26,7 @@ if (!defined('ABSPATH')) {
 function throwAlert(string $message): void
 {
 
+    /** @noinspection ForgottenDebugOutputInspection */
     error_log($message);
 
     add_action('admin_notices', static function () use ($message) {
@@ -41,6 +47,53 @@ if (false === $status) {
 
 [$carbonPHPVersion, $carbonWordPressVersion] = $status;
 
+// Until we can verify all the setup
+[$lowestComposer, $autoloadPath] = (include __DIR__ . '/functions/findComposerAutoload.php') ?? [false, false];
+
+$absPath = ABSPATH;
+
+$composerExecPath = $absPath . 'composer.phar';
+
+if (file_exists($composerExecPath) === false) {
+
+    throwAlert("The composer executable was not found at ($composerExecPath). Attempting to install composer.");
+
+    $composerExecPath = stripos(PHP_OS, 'WIN') === 0 ? shell_exec('which composer') : shell_exec('where composer');
+
+}
+
+if (false === $autoloadPath) {
+
+    if (null === $composerExecPath) {
+
+        $downloadOutput = shell_exec('cd ' . $absPath . ' && curl -sS https://getcomposer.org/installer | php');
+
+        throwAlert($downloadOutput);
+
+    }
+
+    $installPath = dirname($lowestComposer);
+
+    $composerInstallOutput = shell_exec('cd ' . $installPath . ' && php "' . $absPath . 'composer.phar" install');
+
+    print 'cd ' . $installPath . ' && php composer.phar install' . '<br/>' . $composerInstallOutput;
+
+    throwAlert($composerInstallOutput ?? null === $composerInstallOutput ? 'Composer install failed.' : 'Composer installed successfully.');
+
+    $autoloadPath = $installPath . 'vendor/autoload.php';
+
+    if (false === file_exists($autoloadPath)) {
+
+        $autoloadPath = false;
+
+        throwAlert('Failed to install composer. Please install composer manually and run <b>composer install</b> in the root of your '
+            . ($absPath === $installPath ? 'WordPress (' . $absPath . ')' : 'plugin (' . __DIR__ . ')') . ' directory.');
+
+    }
+
+}
+
+
 // this is what will load on our plugin page, and if setup is not complete, we will load the guided setup
 add_action('admin_menu', static fn() => add_menu_page(
     "CarbonPHP",
@@ -52,12 +105,15 @@ add_action('admin_menu', static fn() => add_menu_page(
 </div>
 <script>
     window.C6WordPress = true;
-    window.C6WordPressGuidedSetup = true;
+    window.C6WordPressAbsPath = '$absPath';
     window.C6WordPressVersion = '$carbonWordPressVersion';
     window.C6PHPVersion = '$carbonPHPVersion';
-
-    const manifestURI = 'http://127.0.0.1:3000/';
-    //const manifestURI = 'https://carbonorm.dev/';
+    window.C6AutoLoadPath = '$autoloadPath';
+    window.C6ComposerJsonPath = '$lowestComposer';
+    window.C6ComposerExecutablePath = '$composerExecPath';
+    
+    const manifestURI = 'http:' === window.location.protocol ? 'http://127.0.0.1:3000/' : 'https://carbonorm.dev/';
+    
     fetch(manifestURI + 'asset-manifest.json')
         .then(response => response.json())
         .then(data => {
@@ -87,10 +143,6 @@ HTML,
     'dashicons-editor-customchar',
     '4.5'
 ));
-
-
-// Until we can verify all the setup
-$autoloadPath = include __DIR__ . '/functions/findComposerAutoload.php';
 
 if (false === $autoloadPath) {
 

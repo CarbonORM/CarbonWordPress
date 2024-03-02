@@ -8,7 +8,7 @@ use CarbonPHP\CarbonPHP;
 use CarbonPHP\Programs\Deployment;
 use CarbonPHP\Programs\Migrate;
 
-class WordpressApplication extends Application {
+class WordPressApplication extends Application {
 
     public function startApplication(string $uri): bool
     {

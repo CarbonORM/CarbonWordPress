@@ -2,18 +2,11 @@
 
 $currentLevel = 0;
 
+$lowestComposer = '';
+
 do {
 
     $currentDir = dirname(__DIR__, ++$currentLevel);
-
-    // Check for standard vendor/autoload.php
-    $standardAutoloadPath = $currentDir . '/vendor/autoload.php';
-
-    if (file_exists($standardAutoloadPath)) {
-
-        return $standardAutoloadPath;
-
-    }
 
     // Check for composer.json and if a custom vendor directory is defined
     $composerJsonPath = $currentDir . '/composer.json';
@@ -21,6 +14,17 @@ do {
     if (!file_exists($composerJsonPath)) {
 
         continue;
+
+    }
+
+    $lowestComposer = $composerJsonPath;
+
+    // Check for standard vendor/autoload.php
+    $standardAutoloadPath = $currentDir . '/vendor/autoload.php';
+
+    if (file_exists($standardAutoloadPath)) {
+
+        return [$lowestComposer, $standardAutoloadPath];
 
     }
 
@@ -44,15 +48,19 @@ do {
 
         if (file_exists($customAutoloadPath)) {
 
-            return $customAutoloadPath;
+            return [$lowestComposer, $standardAutoloadPath];
 
         }
 
     }
+    
+} while (ABSPATH !== $currentDir && '/' !== $currentDir);
 
-    $currentDir = dirname(__DIR__, ++$currentLevel);
+if ('' !== $lowestComposer) {
 
-} while ('/' !== $currentDir);
+    return [$lowestComposer, false];
+
+}
 
 return false;
 

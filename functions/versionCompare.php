@@ -9,7 +9,7 @@ $composerLockPath = $rootPluginDir . '/composer.lock';
 if (false === file_exists($composerLockPath)
     || false === file_exists($composerJsonPath)) {
 
-    $adminNotice = "The required CarbonPHP plugin file ($composerLockPath) was not found. Please reinstall this plugin. CarbonPHP was not loaded.";
+    $adminNotice = "The required CarbonPHP plugin file ($composerLockPath) and/or ($composerJsonPath) was not found. Please reinstall this plugin. CarbonPHP was not loaded.";
 
     throwAlert($adminNotice);
 
@@ -33,9 +33,9 @@ try {
 
 $packages = $composerLock['packages'] ?? [];
 
-$carbonPHP = array_filter($packages, static fn(array $package) => 'carbonorm/carbonphp' === $package['name']);
+$carbonPHPInfoFromLockFile = array_filter($packages, static fn(array $package) => 'carbonorm/carbonphp' === $package['name']);
 
-if (empty($carbonPHP)) {
+if (empty($carbonPHPInfoFromLockFile)) {
 
     throwAlert("The required CarbonPHP plugin was not found in the lock file. This is unexpected and possibly means a corrupted installation. Please reinstall this plugin. CarbonPHP was not loaded!");
 
@@ -43,11 +43,35 @@ if (empty($carbonPHP)) {
 
 }
 
-$carbonWordPressVersion = $composer['version'] ?? false;
+$requiredPHPVersion = $carbonPHPInfoFromLockFile[0]['require']['php'] ?? false;
 
-$carbonPHPVersion = $carbonPHP[0]['version'] ?? false;
+$requiredPHPVersion = preg_split('/([<>=^]+)/', $requiredPHPVersion, -1, PREG_SPLIT_DELIM_CAPTURE);
 
-$requiredCarbonPHPVersion = $carbonPHP[0]['require']['php'] ?? false;
+[,, $requiredPHPVersion] = $requiredPHPVersion;
+
+// todo - make this a better comparison
+if (false === version_compare(PHP_VERSION, $requiredPHPVersion, '>=')) {
+
+    throwAlert("CarbonPHP requires PHP version (>=$requiredPHPVersion). Please update your version of PHP (" . PHP_VERSION . ')');
+
+    return false;
+
+}
+
+$carbonPHPVersionFromLock = $carbonPHPInfoFromLockFile[0]['version'] ?? false;
+
+
+function findCarbonPHP($require)
+{
+    foreach ($require as $name => $version) {
+        if ($name === 'carbonorm/carbonphp') {
+            return $version;
+        }
+    }
+    return false;
+}
+
+$requiredCarbonPHPVersion = findCarbonPHP($composer['require']);
 
 if (false === $requiredCarbonPHPVersion) {
 
@@ -58,18 +82,16 @@ if (false === $requiredCarbonPHPVersion) {
 }
 
 // split version into operator and version number
-$requiredCarbonPHPVersion = preg_split('/([<>=]+)/', $requiredCarbonPHPVersion, -1, PREG_SPLIT_DELIM_CAPTURE);
+$carbonWordPressVersion = $composer['version'] ?? false;
 
-[, $operator, $requiredCarbonPHPVersion] = $requiredCarbonPHPVersion;
+if (false === version_compare($carbonPHPVersionFromLock, $requiredCarbonPHPVersion, '>=')) {
 
-if (false === version_compare(PHP_VERSION, $requiredCarbonPHPVersion, $operator)) {
-
-    throwAlert("This version of CarbonWordPress ($carbonWordPressVersion) uses CarbonPHP ($carbonPHPVersion) which requires "
-        . "PHP version ($operator$requiredCarbonPHPVersion) or greater. Your server is running PHP (" . PHP_VERSION
+    throwAlert("This version of CarbonWordPress ($carbonWordPressVersion) uses CarbonPHP ($carbonPHPVersionFromLock) which requires "
+        . "PHP version (>=$requiredCarbonPHPVersion) or greater. Your server is running PHP (" . PHP_VERSION
         . '). Please update your version of PHP or you may consider downgrading the CarbonWordPress plugin.');
 
     return false;
 
 }
 
-return [$carbonPHPVersion, $carbonWordPressVersion];
+return [$carbonPHPVersionFromLock, $carbonWordPressVersion];

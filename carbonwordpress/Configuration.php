@@ -29,7 +29,6 @@ class Configuration implements iConfig {
             CarbonPHP::VIEW => [
                 // TODO - THIS IS USED AS A URL AND DIRECTORY PATH. THIS IS BAD. WE NEED DS
                 CarbonPHP::VIEW => DS,  // This is where the MVC() function will map the HTML.PHP and HTML.HBS . See Carbonphp.com/mvc
-                CarbonPHP::WRAPPER => '2.0.0/Wrapper.hbs',     // View::content() will produce this
             ],
             // ERRORS on point
             CarbonPHP::ERROR => [

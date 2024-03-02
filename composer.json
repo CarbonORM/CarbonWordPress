@@ -17,8 +17,9 @@
   ],
   "minimum-stability": "dev",
   "require": {
+    "ext-sockets": "*",
     "composer/installers": "^2.0@dev",
-    "carbonorm/carbonphp": "^18.1.0",
+    "carbonorm/carbonphp": "^19",
     "wp-cli/wp-cli-bundle": "dev-main"
   },
   "scripts": {
