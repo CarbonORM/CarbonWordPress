@@ -3,7 +3,7 @@
   "description": "WordPress bindings and GUI for CarbonPHP. A WordPress Plugin.",
   "type": "wordpress-plugin",
   "license": "mit",
-  "version": "0.0.27",
+  "version": "0.1.0",
   "autoload": {
     "psr-4": {
       "CarbonWordPress\\": "carbonwordpress/"
@@ -19,8 +19,9 @@
   "require": {
     "ext-sockets": "*",
     "composer/installers": "^2.0@dev",
-    "carbonorm/carbonphp": "^19",
-    "wp-cli/wp-cli-bundle": "dev-main"
+    "carbonorm/carbonphp": "^20",
+    "wp-cli/wp-cli-bundle": "dev-main",
+    "ext-posix": "*"
   },
   "scripts": {
     "post-install-cmd": [

@@ -1,14 +1,56 @@
 <?php
 
+namespace CarbonWordPress;
 
 use CarbonPHP\Abstracts\ColorCode;
 use CarbonPHP\Error\ThrowableHandler;
 use CarbonPHP\Interfaces\iColorCode;
+use CarbonPHP\Programs\WebSocket;
 
-class WordPressWebSocket
+class WordPressWebSocket extends WebSocket
 {
 
     public static string $cookieName = 'WsNonce';
+
+
+    public static function getPid(): string
+    {
+        $absPath = ABSPATH;
+
+        $path = $absPath . "index.php";
+
+        // @link https://stackoverflow.com/questions/29112446/nohup-doesnt-work-with-os-x-yosmite-get-error-cant-detach-from-console-no-s
+// you cant trust nohup on mac, < /dev/null: Redirects the standard input from /dev/null (i.e., the script won't wait for any input).
+        $cmd = /** @lang Shell Script */
+            <<<BASH
+            
+            set -e;
+            
+            cd "$absPath";
+            
+            pid=$(lsof -i tcp:8888 | awk 'NR>1 {print $2}')
+            
+            if [ -z "\$pid" ]; then
+                
+                if [ ! -d ./logs ]; then
+                    mkdir ./logs
+                fi
+                
+                php '$path' WordPressWebSocket < /dev/null > ./logs/websocket.txt 2>&1 & 
+                
+                echo \$! > ./logs/websocket.pid
+              
+                # No process found, start a new one
+                echo "Started new process, PID: $( cat ./logs/websocket.pid )"
+            else
+                echo "Found existing process, PID: \$pid"
+            fi
+            
+            BASH;
+
+        return trim(shell_exec($cmd) ?? '');
+
+    }
 
     public static function wpValidation()
     {
@@ -172,7 +214,6 @@ class WordPressWebSocket
         return null;
 
     }
-
 
     public static function importWordpress(): void
     {

@@ -12,19 +12,15 @@ class Configuration implements iConfig {
     public static function configuration(): array
     {
 
-        $prefix = ABSPATH;
+        if (!defined('WEBSOCKET_PORT')) {
 
-        $str = dirname(CarbonPHP::CARBON_ROOT);
-
-        if (str_starts_with($str, $prefix)) {
-
-            $str = substr($str, strlen($prefix));
+            define('WEBSOCKET_PORT', 8888);
 
         }
 
         return [
             CarbonPHP::SOCKET => [
-                CarbonPHP::PORT => defined('SOCKET_PORT') ? SOCKET_PORT : 8888,    // the ladder would case when boot-strapping server setup on aws invocation stating at dig.php
+                CarbonPHP::PORT => WEBSOCKET_PORT,    // the ladder would case when boot-strapping server setup on aws invocation stating at dig.php
             ],
             CarbonPHP::VIEW => [
                 // TODO - THIS IS USED AS A URL AND DIRECTORY PATH. THIS IS BAD. WE NEED DS
@@ -36,7 +32,7 @@ class Configuration implements iConfig {
                 CarbonPHP::LEVEL => E_ALL | E_USER_DEPRECATED | E_DEPRECATED | E_RECOVERABLE_ERROR | E_STRICT
                     | E_USER_NOTICE | E_USER_WARNING | E_USER_ERROR | E_COMPILE_WARNING | E_COMPILE_ERROR
                     | E_CORE_WARNING | E_CORE_ERROR | E_NOTICE | E_PARSE | E_WARNING | E_ERROR,  // php ini level
-                CarbonPHP::STORE => false,      // Database if specified and / or File 'LOCATION' in your system
+                CarbonPHP::STORE => true,      // Database if specified and / or File 'LOCATION' in your system
                 CarbonPHP::SHOW => true,       // Show errors on browser
                 CarbonPHP::FULL => true        // Generate custom stacktrace will high detail - DO NOT set to TRUE in PRODUCTION
             ],
@@ -66,6 +62,9 @@ class Configuration implements iConfig {
                 CarbonPHP::CONFIG => __FILE__,
                 CarbonPHP::IP_TEST => false,
                 CarbonPHP::HTTP => true,
+                CarbonPHP::PROGRAMS => [
+                    WordPressWebSocket::class
+                ]
             ],
         ];
 
