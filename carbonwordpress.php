@@ -8,6 +8,7 @@
 
 use CarbonPHP\Abstracts\Composer;
 use CarbonPHP\CarbonPHP;
+use CarbonPHP\Programs\Migrate;
 use CarbonWordPress\CarbonWordPress;
 use CarbonWordPress\WordPressWebSocket;
 
@@ -113,13 +114,19 @@ if (false !== $autoloadPath) {
 
         CarbonWordpress::make();
 
-    }
+        $isWebsocketRunning = WordPressWebSocket::getPid();
 
-    $isWebsocketRunning = WordPressWebSocket::getPid();
+        (new Migrate)->getLicense();
+
+        $migrateLicense = Migrate::$license;
+
+    }
 
 }
 
 $isWebsocketRunning ??= 'false';
+
+$migrateLicense ??= '';
 
 $phpVersion = PHP_VERSION;
 
@@ -154,7 +161,6 @@ if (count($groupIds) > 1) {
 
 }
 
-
 // this is what will load on our plugin page, and if setup is not complete, we will load the guided setup
 add_action('admin_menu', static fn() => add_menu_page(
     "CarbonPHP",
@@ -170,7 +176,7 @@ Loading CarbonPHP...
 window.C6WordPress = {
     C6WordPressAbsPath: '$absPath',
     C6WebsocketRunning: `$isWebsocketRunning`,
-    C6WebsocketCmd: `$cmd`,
+    C6MigrateLicense: `$migrateLicense`,
     C6WordPressVersion: '$carbonWordPressVersion',
     C6CarbonPHPVersion: '$carbonPHPVersion',
     C6AutoLoadPath: '$autoloadPath',

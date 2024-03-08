@@ -20,11 +20,7 @@ class Configuration implements iConfig {
 
         return [
             CarbonPHP::SOCKET => [
-                CarbonPHP::PORT => WEBSOCKET_PORT,    // the ladder would case when boot-strapping server setup on aws invocation stating at dig.php
-            ],
-            CarbonPHP::VIEW => [
-                // TODO - THIS IS USED AS A URL AND DIRECTORY PATH. THIS IS BAD. WE NEED DS
-                CarbonPHP::VIEW => DS,  // This is where the MVC() function will map the HTML.PHP and HTML.HBS . See Carbonphp.com/mvc
+                CarbonPHP::PORT => WEBSOCKET_PORT,
             ],
             // ERRORS on point
             CarbonPHP::ERROR => [

@@ -14,7 +14,7 @@ A WordPress Plugin to provide a GUI for CarbonPHP. **This plugin** is in **activ
 
 ## Download Options
 
-This is a general list of different ways to download the CarbonPHP framework. I've ordered them from least technical to
+This is a general list of different ways to download the CarbonPHP framework. I've ordered them from IMO least technical to
 most technical.
 
 1) ~~Search for CarbonPHP in the WordPress plugin store.~~ (Pending review)
@@ -29,7 +29,21 @@ most technical.
     - Locate and pick the plugin's .zip file stored on your local computer.
     - Click "Open."
     - To commence the installation, click on "Install Now."
-3) Clone the repository from GitHub (HTTPS or SSH) into your plugin's directory (typically `wp-content/plugins`).
+3) Install the plugin using [Composer](https://getcomposer.org/).
+    - Open a terminal and navigate to your WordPress installation.
+    - Run the following command to install the plugin.
+    ```bash
+    composer require carbonorm/carbonwordpress
+    ```
+    - Log in to your WordPress admin dashboard.
+    - In the left-hand menu, click on "Plugins."
+    - You will see a list of all your installed plugins. Find the plugin CarbonWordPress and select activate.
+4) Clone the repository from GitHub .
+    - Open a terminal and navigate into your plugin's directory (typically `wp-content/plugins`)
+    - Run the following command to clone the repository.
+    ```bash
+    git clone git@github.com:CarbonORM/CarbonWordPress.git
+    ```
     - Log in to your WordPress admin dashboard.
     - In the left-hand menu, click on "Plugins."
     - You will see a list of all your installed plugins. Find the plugin you want to activate.
