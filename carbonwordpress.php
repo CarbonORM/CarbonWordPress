@@ -10,6 +10,7 @@ use CarbonPHP\Abstracts\Composer;
 use CarbonPHP\CarbonPHP;
 use CarbonPHP\Programs\Migrate;
 use CarbonWordPress\CarbonWordPress;
+use CarbonWordPress\WordPressApplication;
 use CarbonWordPress\WordPressWebSocket;
 
 /**
@@ -112,27 +113,34 @@ if (false !== $autoloadPath) {
 
         Composer::$loader = $loader;
 
+        WordPressApplication::$composerExecutable = $composerExecPath;
+
         CarbonWordpress::make();
 
-        $isWebsocketRunning = WordPressWebSocket::getPid();
+        [$cmd, $isWebsocketRunning] = WordPressWebSocket::getPid();
 
         (new Migrate)->getLicense();
 
         $migrateLicense = Migrate::$license;
 
+        $setupComplete = CarbonPHP::$setupComplete;
+
+
     }
 
 }
 
-$isWebsocketRunning ??= 'false';
+$isWebsocketRunning ??= false;
 
 $migrateLicense ??= '';
+
+$cmd ??= '';
 
 $phpVersion = PHP_VERSION;
 
 $whoami = get_current_user();
 
-$setupComplete = CarbonPHP::$setupComplete;
+$setupComplete ??= false;
 
 // all groups get merged into a comma delimited string formatted for a javascript array
 $groups = '';
@@ -176,6 +184,7 @@ Loading CarbonPHP...
 window.C6WordPress = {
     C6WordPressAbsPath: '$absPath',
     C6WebsocketRunning: `$isWebsocketRunning`,
+    C6WebsocketRunningCommand: `$cmd`,
     C6MigrateLicense: `$migrateLicense`,
     C6WordPressVersion: '$carbonWordPressVersion',
     C6CarbonPHPVersion: '$carbonPHPVersion',
