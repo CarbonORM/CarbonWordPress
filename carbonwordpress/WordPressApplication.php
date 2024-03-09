@@ -23,7 +23,9 @@ class WordPressApplication extends Application
         if (self::regexMatch('#logs/websocket#', static function () {
                 $abspath = ABSPATH;
                 //print str_replace("\n", '<br/>', shell_exec("cd '$abspath' && tail -n 1000 ./logs/websocket.txt"));
-                print shell_exec("cd '$abspath' && tail -n 100 ./logs/websocket.txt");
+                $cmd ="cd '$abspath' && tail -n 1000 ./logs/websocket.txt";
+                print ">> $cmd\n";
+                print shell_exec($cmd);
                 exit(0);
             })
             || self::regexMatch('#logs/migrate#', static function () {
@@ -55,7 +57,11 @@ class WordPressApplication extends Application
 
                     }
 
-                    print_r($output);
+                    if (is_array($output)) {
+                        print json_encode($output, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT);
+                    } else {
+                        print $output;
+                    }
 
                     exit(0);
                 }))

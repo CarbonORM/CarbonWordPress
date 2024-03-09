@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7c637ab437828c1a8487d9058fe6b1cc",
+    "content-hash": "6d865956a669f77933e9fb7a2d8af998",
     "packages": [
         {
             "name": "carbonorm/carbonphp",
-            "version": "20.1.0",
+            "version": "20.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CarbonORM/CarbonPHP.git",
-                "reference": "c9604e841b87ea66109b7e8db6059f25da8257a4"
+                "reference": "3fe809794b4c37a269893d4d492ff8702e8a2801"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CarbonORM/CarbonPHP/zipball/c9604e841b87ea66109b7e8db6059f25da8257a4",
-                "reference": "c9604e841b87ea66109b7e8db6059f25da8257a4",
+                "url": "https://api.github.com/repos/CarbonORM/CarbonPHP/zipball/3fe809794b4c37a269893d4d492ff8702e8a2801",
+                "reference": "3fe809794b4c37a269893d4d492ff8702e8a2801",
                 "shasum": ""
             },
             "require": {
@@ -88,9 +88,9 @@
             ],
             "support": {
                 "issues": "https://github.com/CarbonORM/CarbonPHP/issues",
-                "source": "https://github.com/CarbonORM/CarbonPHP/tree/20.1.0"
+                "source": "https://github.com/CarbonORM/CarbonPHP/tree/20.1.5"
             },
-            "time": "2024-03-08T00:12:43+00:00"
+            "time": "2024-03-09T04:38:03+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -249,12 +249,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "66acb84c12d1d2b3cce7b2967f8e25522f502e60"
+                "reference": "57427e6227f3bd9093daedab2a64feeb6cced4fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/66acb84c12d1d2b3cce7b2967f8e25522f502e60",
-                "reference": "66acb84c12d1d2b3cce7b2967f8e25522f502e60",
+                "url": "https://api.github.com/repos/composer/composer/zipball/57427e6227f3bd9093daedab2a64feeb6cced4fa",
+                "reference": "57427e6227f3bd9093daedab2a64feeb6cced4fa",
                 "shasum": ""
             },
             "require": {
@@ -356,7 +356,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-05T10:32:40+00:00"
+            "time": "2024-03-08T09:44:47+00:00"
         },
         {
             "name": "composer/installers",
@@ -4835,7 +4835,8 @@
     "prefer-lowest": false,
     "platform": {
         "ext-sockets": "*",
-        "ext-posix": "*"
+        "ext-posix": "*",
+        "ext-pcntl": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
