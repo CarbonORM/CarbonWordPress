@@ -51,12 +51,16 @@ most technical.
     - The plugin will now be activated, and you should see a confirmation message indicating that the plugin has been
       successfully activated.
 
-```bash
-git clone https://github.com/CarbonORM/CarbonWordPress.git
-```
 
-It is `recommended to use SSH version below` if you have it [set up](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account). This will allow you to push changes to your own fork
-of the repository.
+# Usage 
+
+In your admin panel, after activation, you will see the CarbonORM tab. This is where all C6 guided user actions will take palce.
+<img width="279" alt="Screenshot 2024-03-12 at 1 14 46 AM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/d60c663f-6ed4-4616-b858-a73d04c64439">
+
+## Migrate
+## Update Composer
+## View WebSocket Logs
+
 
 ```bash
 git clone git@github.com:CarbonORM/CarbonWordPress.git
