@@ -12,15 +12,23 @@ use CarbonPHP\Programs\Migrate;
 class WordPressApplication extends Application
 {
 
+    public const uriPrefix = 'c6wordpress/';
+
     public static ?string $composerExecutable = null;
 
     public static bool $updateComposerRouteEnabled = true;
 
     public function startApplication(string $uri): bool
     {
+
+        if (false === CarbonWordPress::isPrivilegedUser()) {
+            return false;
+        }
+
+
         putenv('PATH=/bin:/usr/bin/:/usr/sbin/:/usr/local/bin:$PATH');
 
-        if (self::regexMatch('#logs/websocket#', static function () {
+        if (self::regexMatch('#c6wordpress/logs/websocket#', static function () {
                 $abspath = ABSPATH;
                 //print str_replace("\n", '<br/>', shell_exec("cd '$abspath' && tail -n 1000 ./logs/websocket.txt"));
                 $cmd ="cd '$abspath' && tail -n 1000 ./logs/websocket.txt";
@@ -30,11 +38,27 @@ class WordPressApplication extends Application
             })
             || self::regexMatch('#logs/migrate#', static function () {
                 $abspath = ABSPATH;
-                //print str_replace("\n", '<br/>', shell_exec("cd '$abspath' && tail -n 1000 ./logs/websocket.txt"));
                 print shell_exec("cd '$abspath' && tail -n 100 ./logs/migrate.txt");
                 exit(0);
             })
-            || (self::$updateComposerRouteEnabled && self::regexMatch('#logs/composer/update/?#', static function () {
+            || self::regexMatch('#c6wordpress/logs/migrate/#', static function () {
+                $abspath = ABSPATH;
+                print shell_exec("cd '$abspath' && tail -n 1000 ./logs/migrate.txt");
+                exit(0);
+            })
+            || self::regexMatch('#c6wordpress/migrate/*#', static function () {
+
+                [$cmd, $resp] = WordPressMigration::getPid();
+
+                /** @noinspection ForgottenDebugOutputInspection */
+                print_r([
+                    'Command' => $cmd,
+                    'output'=> $resp
+                ]);
+
+                exit(0);
+            })
+            || (self::$updateComposerRouteEnabled && self::regexMatch('#c6wordpress/logs/composer/update/?#', static function () {
 
                     $abspath = ABSPATH;
 
@@ -46,7 +70,6 @@ class WordPressApplication extends Application
 
                     print 'Running: ' . $cmd;
 
-                    //print str_replace("\n", '<br/>', shell_exec("cd '$abspath' && tail -n 1000 ./logs/websocket.txt"));
                     if (0 !== $exitCode = Background::executeAndCheckStatus("cd '$abspath' && HOME=/ php " . self::$composerExecutable . " install 2>&1", false, $output)) {
 
                         print 'Update Failed with exit code: (' . $exitCode . ')';
@@ -65,8 +88,10 @@ class WordPressApplication extends Application
 
                     exit(0);
                 }))
-            || Deployment::github()
-            || Migrate::enablePull([CarbonPHP::$app_root])) {
+            || Deployment::github('c6wordpress/github')
+            || Migrate::enablePull([
+                CarbonPHP::$app_root
+            ])) {
 
             ColorCode::colorCode("CarbonPHP matched matched a route with the Wordpress Plugin Feature!");
 
@@ -79,6 +104,6 @@ class WordPressApplication extends Application
 
     public function defaultRoute(): void
     {
-        // TODO: Implement defaultRoute() method.
+        // do nothing here :) - RM
     }
 }

@@ -15,48 +15,7 @@ class WordPressWebSocket extends WebSocket
 
     public static function getPid(): array
     {
-        $absPath = ABSPATH;
-
-        $path = $absPath . "index.php";
-
-        // @link https://stackoverflow.com/questions/29112446/nohup-doesnt-work-with-os-x-yosmite-get-error-cant-detach-from-console-no-s
-        // you cant trust nohup on mac, < /dev/null: Redirects the standard input from /dev/null (i.e., the script won't wait for any input).
-        $cmd = /** @lang Shell Script */
-            <<<BASH
-            
-            echo "$@"
-
-            # @link https://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html
-            # if a command fails and piped to cat, for example, the full command will exit failure,.. cat will not run.?
-            # @link https://distroid.net/set-pipefail-bash-scripts/?utm_source=rss&utm_medium=rss&utm_campaign=set-pipefail-bash-scripts
-            # @link https://transang.me/best-practice-to-make-a-shell-script/
-            # @link https://stackoverflow.com/questions/2853803/how-to-echo-shell-commands-as-they-are-executed
-            set -e
-            
-            cd "$absPath";
-            
-            pid=$( cat ./logs/websocket.pid 2>/dev/null || echo '' )
-            
-            if [ -z "\$pid" ] || ! ps -p "\$pid" > /dev/null ; then
-                
-                if [ ! -d ./logs ]; then
-                    mkdir ./logs
-                fi
-                
-                php '$path' WordPressWebSocket --autoAssignAnyOpenPort < /dev/null > ./logs/websocket.txt 2>&1 & 
-                
-                echo \$! > ./logs/websocket.pid
-              
-                # No process found, start a new one
-                echo "Started new process, PID: $( cat ./logs/websocket.pid )"
-            else
-                echo "Found existing process, PID: \$pid"
-            fi
-            
-            BASH;
-
-        return [$cmd, trim(shell_exec($cmd) ?? '')];
-
+        return CarbonWordPress::startProcessInBackground();
     }
 
     public static function wpValidation()
