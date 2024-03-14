@@ -21,44 +21,54 @@ class WordPressApplication extends Application
     public function startApplication(string $uri): bool
     {
 
-        if (false === CarbonWordPress::isPrivilegedUser()) {
-            return false;
+        // these requests will be coming from external servers which will not be authenticated via wordpress
+        if (Deployment::github('c6wordpress/github')
+            || Migrate::enablePull([
+                CarbonPHP::$app_root
+            ])) {
+
+            return true;
+
         }
 
+        $isPrivilegedUser = CarbonWordPress::isPrivilegedUser();
+
+        $requiresLoginNotice = static function (callable $closure) use ($isPrivilegedUser) {
+            return $isPrivilegedUser ? $closure : static function () {
+                print 'You are not logged in to a privileged user account! You must login or switch accounts to view this content.';
+            };
+        };
 
         putenv('PATH=/bin:/usr/bin/:/usr/sbin/:/usr/local/bin:$PATH');
 
-        if (self::regexMatch('#c6wordpress/logs/websocket#', static function () {
+        if (self::regexMatch('#c6wordpress/logs/websocket#', $requiresLoginNotice(static function () {
                 $abspath = ABSPATH;
                 //print str_replace("\n", '<br/>', shell_exec("cd '$abspath' && tail -n 1000 ./logs/websocket.txt"));
-                $cmd ="cd '$abspath' && tail -n 1000 ./logs/websocket.txt";
+                $cmd = "cd '$abspath' && tail -n 1000 ./logs/websocket.txt";
                 print ">> $cmd\n";
                 print shell_exec($cmd);
                 exit(0);
-            })
-            || self::regexMatch('#logs/migrate#', static function () {
+            }))
+            || self::regexMatch('#c6wordpress/logs/migrate#', $requiresLoginNotice(static function () {
                 $abspath = ABSPATH;
-                print shell_exec("cd '$abspath' && tail -n 100 ./logs/migrate.txt");
+                $cmd = "cd '$abspath' && tail -n 1000 ./logs/migrate.txt";
+                print ">>> $cmd";
+                print shell_exec($cmd);
                 exit(0);
-            })
-            || self::regexMatch('#c6wordpress/logs/migrate/#', static function () {
-                $abspath = ABSPATH;
-                print shell_exec("cd '$abspath' && tail -n 1000 ./logs/migrate.txt");
-                exit(0);
-            })
-            || self::regexMatch('#c6wordpress/migrate/*#', static function () {
+            }))
+            || self::regexMatch('#c6wordpress/migrate#', $requiresLoginNotice(static function () {
 
                 [$cmd, $resp] = WordPressMigration::getPid();
 
                 /** @noinspection ForgottenDebugOutputInspection */
                 print_r([
                     'Command' => $cmd,
-                    'output'=> $resp
+                    'output' => $resp
                 ]);
 
                 exit(0);
-            })
-            || (self::$updateComposerRouteEnabled && self::regexMatch('#c6wordpress/logs/composer/update/?#', static function () {
+            }))
+            || (self::$updateComposerRouteEnabled && self::regexMatch('#c6wordpress/logs/composer/update#', $requiresLoginNotice(static function () {
 
                     $abspath = ABSPATH;
 
@@ -87,16 +97,13 @@ class WordPressApplication extends Application
                     }
 
                     exit(0);
-                }))
-            || Deployment::github('c6wordpress/github')
-            || Migrate::enablePull([
-                CarbonPHP::$app_root
-            ])) {
+                })))
+        ) {
 
             ColorCode::colorCode("CarbonPHP matched matched a route with the Wordpress Plugin Feature!");
 
-
         }
+
 
         return true;
 

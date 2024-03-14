@@ -2,7 +2,10 @@
 
 namespace CarbonWordPress;
 
-class WordPressMigration
+use CarbonPHP\Error\PublicAlert;
+use CarbonPHP\Programs\Migrate;
+
+class WordPressMigration extends Migrate
 {
 
     // this is the c6 program name that will be used to start the process
@@ -13,13 +16,20 @@ class WordPressMigration
 
         $localServerUrl = $_POST['localURL'] ?? null;
 
-        $remoteServerUrl = $_POST['remoteURL'];
+        $remoteServerUrl = $_POST['remoteURL'] ?? null;
+
+        if (empty($remoteServerUrl)) {
+
+            // todo - should I handle this differently
+            throw new PublicAlert('No remote URL was provided to the migration command. (' . __FILE__ . ':' . __LINE__ . ')');
+
+        }
 
         $license = $_POST['remoteAPIKey'] ?? null;
 
         if (null === $localServerUrl) {
 
-            $localServerUrl = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+            $localServerUrl = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://{$_SERVER['HTTP_HOST']}/";
 
             $localServerUrl = htmlspecialchars( $localServerUrl, ENT_QUOTES, 'UTF-8' );
 
@@ -32,7 +42,7 @@ class WordPressMigration
             $remoteServerUrl
         ];
 
-        if (null !== $license) {
+        if (!empty($license)) {
             $args[] = '--license';
             $args[] = $license;
         }
