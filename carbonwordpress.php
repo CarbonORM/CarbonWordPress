@@ -31,6 +31,52 @@ if (!defined('ABSPATH')) {
 
 add_action('init', static function () {
 
+    $consentFile = __DIR__ . '/licenseAccepted';
+
+    // @link https://developer.wordpress.org/plugins/wordpress-org/detailed-plugin-guidelines/#7-plugins-may-not-track-users-without-their-consent
+    $consentGiven = file_exists($consentFile);
+
+    if (!$consentGiven
+        && ($_GET['page'] ?? '') === 'CarbonPHP'
+        && ($_GET['action'] ?? '') === 'acceptLicense'
+    ) {
+
+        file_put_contents($consentFile, date('Y-m-d H:i:s'));
+
+        $consentGiven = true;
+
+    }
+
+    if (!$consentGiven) {
+
+        // todo - add disable plugin button
+        add_action('admin_notices', static function () {
+
+            // Generate the deactivate URL with nonce.
+// Generate the deactivate URL with nonce.
+            $deactivate_url = wp_nonce_url(
+                admin_url('plugins.php?action=deactivate&plugin=carbonwordpress%2Fcarbonwordpress.php'),
+                'deactivate-plugin_carbonwordpress/carbonwordpress.php'
+            );
+
+            $accept_url = esc_url(admin_url('admin.php?action=acceptLicense&page=CarbonPHP'));
+
+            print <<<HTML
+            <div class="notice notice-warning is-dismissible">
+                <p>CarbonPHP is a powerful tool that can help you build and maintain your WordPress site. By using CarbonPHP, you agree to the <a href="https://github.com/CarbonORM/CarbonWordPress/blob/main/LICENSE">CarbonWordPress License</a> and <a href="https://github.com/CarbonORM/CarbonWordPress/blob/main/README.md">Terms of Service</a> .</p>
+                <p>
+                    <a href="$accept_url" class="button button-primary">Accept License</a>
+                    <a href="$deactivate_url" class="button button-danger">Deactivate Plugin</a>
+                </p>
+            </div>
+            HTML;
+
+        });
+
+        return;
+
+    }
+
     function throwAlert(string $message): void
     {
 
@@ -132,10 +178,13 @@ add_action('init', static function () {
 
             $isMigrationRunning = $isMigrationRunning !== false ? "Migration is running under PID ($isMigrationRunning)" : 'Migration is not running';
 
+            $pastMigrations = WordPressMigration::getPastMigrations();
 
         }
 
     }
+
+    $pastMigrations ??= '';
 
     $isMigrationRunning ??= 'Migration is not running';
 
@@ -178,7 +227,7 @@ add_action('init', static function () {
 
     }
 
-// this is what will load on our plugin page, and if setup is not complete, we will load the guided setup
+    // this is what will load on our plugin page, and if setup is not complete, we will load the guided setup
     add_action('admin_menu', static fn() => add_menu_page(
         "CarbonPHP",
         "CarbonPHP",
@@ -193,6 +242,7 @@ add_action('init', static function () {
                     window.C6WordPress = {
                         C6MigrationRunning: '$isMigrationRunning',
                         C6WordPressAbsPath: '$absPath',
+                        C6PastMigrations: `$pastMigrations`,
                         C6WebsocketRunning: `$isWebsocketRunning`,
                         C6WebsocketRunningCommand: `$cmd`,
                         C6MigrateLicense: `$migrateLicense`,

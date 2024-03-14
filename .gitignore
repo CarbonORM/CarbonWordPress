@@ -60,3 +60,4 @@ wp-config.php
 #/wp-content/themes
 /vendor/
 /.idea/
+licenseAccepted

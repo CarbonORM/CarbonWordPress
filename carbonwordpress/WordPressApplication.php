@@ -6,18 +6,18 @@ use CarbonPHP\Abstracts\ColorCode;
 use CarbonPHP\Application;
 use CarbonPHP\CarbonPHP;
 use CarbonPHP\Abstracts\Background;
+use CarbonPHP\Error\PublicAlert;
 use CarbonPHP\Programs\Deployment;
 use CarbonPHP\Programs\Migrate;
 
 class WordPressApplication extends Application
 {
 
-    public const uriPrefix = 'c6wordpress/';
-
     public static ?string $composerExecutable = null;
 
     public static bool $updateComposerRouteEnabled = true;
 
+    /** @noinspection NotOptimalIfConditionsInspection */
     public function startApplication(string $uri): bool
     {
 
@@ -34,40 +34,49 @@ class WordPressApplication extends Application
         $isPrivilegedUser = CarbonWordPress::isPrivilegedUser();
 
         $requiresLoginNotice = static function (callable $closure) use ($isPrivilegedUser) {
-            return $isPrivilegedUser ? $closure : static function () {
+            return $isPrivilegedUser ? $closure : static function (): never {
                 print 'You are not logged in to a privileged user account! You must login or switch accounts to view this content.';
+                exit(0);
             };
+        };
+
+        $catLogs = static function (string $program) {
+            $abspath = ABSPATH;
+            $cmd = "cd '$abspath' && tail -n 1000 ./logs/$program.txt";
+            print ">> $cmd\n";
+            print shell_exec($cmd);
+            exit(0);
         };
 
         putenv('PATH=/bin:/usr/bin/:/usr/sbin/:/usr/local/bin:$PATH');
 
-        if (self::regexMatch('#c6wordpress/logs/websocket#', $requiresLoginNotice(static function () {
-                $abspath = ABSPATH;
-                //print str_replace("\n", '<br/>', shell_exec("cd '$abspath' && tail -n 1000 ./logs/websocket.txt"));
-                $cmd = "cd '$abspath' && tail -n 1000 ./logs/websocket.txt";
-                print ">> $cmd\n";
-                print shell_exec($cmd);
-                exit(0);
-            }))
-            || self::regexMatch('#c6wordpress/logs/migrate#', $requiresLoginNotice(static function () {
-                $abspath = ABSPATH;
-                $cmd = "cd '$abspath' && tail -n 1000 ./logs/migrate.txt";
-                print ">>> $cmd";
-                print shell_exec($cmd);
-                exit(0);
-            }))
-            || self::regexMatch('#c6wordpress/migrate#', $requiresLoginNotice(static function () {
+        if (self::regexMatch('#c6wordpress/logs/websocket#', $requiresLoginNotice(static fn () => $catLogs('WordPressWebSocket')))
+            || self::regexMatch('#c6wordpress/logs/migrate#', $requiresLoginNotice(static fn () => $catLogs('migrate')))
+            || self::regexMatch('#c6wordpress/migrate(?:/([^/]*))?#', static function ($subAction = null) use ($requiresLoginNotice) {
 
-                [$cmd, $resp] = WordPressMigration::getPid();
+                switch ($subAction) {
+                    case null:
+                        $requiresLoginNotice(static function () {
 
-                /** @noinspection ForgottenDebugOutputInspection */
-                print_r([
-                    'Command' => $cmd,
-                    'output' => $resp
-                ]);
+                            [$cmd, $resp] = WordPressMigration::getPid();
 
-                exit(0);
-            }))
+                            /** @noinspection ForgottenDebugOutputInspection */
+                            print_r([
+                                'Command' => $cmd,
+                                'output' => $resp
+                            ]);
+
+                        })();
+                        exit(0);
+                    case 'verify':
+                        /** @noinspection PhpUndefinedFunctionInspection - in wordpress context */
+                        print get_site_url() . '/';
+                        exit(0);
+                    default:
+                        throw new PublicAlert('Unknown migration sub command (' . __FILE__ . ':' . __LINE__ . ')');
+                }
+
+            })
             || (self::$updateComposerRouteEnabled && self::regexMatch('#c6wordpress/logs/composer/update#', $requiresLoginNotice(static function () {
 
                     $abspath = ABSPATH;
