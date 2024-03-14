@@ -10,7 +10,11 @@
 
 # CarbonWordpress
 
-A WordPress Plugin to provide a GUI for CarbonPHP. **This plugin** is in **active development** and is **not ready for public use**.
+A WordPress Plugin to provide a GUI for CarbonPHP. Currently our GUI supports:
+
+1) Migrating data between servers
+2) Starting a WebSocket and viewing the realtime logs
+3) Updating composer
 
 ## Download Options
 
@@ -55,13 +59,23 @@ most technical.
 # Usage 
 
 In your admin panel, after activation, you will see the CarbonORM tab. This is where all C6 guided user actions will take palce.
-<img width="279" alt="Screenshot 2024-03-12 at 1 14 46 AM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/d60c663f-6ed4-4616-b858-a73d04c64439">
+<img width="1792" alt="Screenshot 2024-03-13 at 10 46 53 PM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/c0b42a5c-db50-4e54-af34-2dd13b035a35">
 
 ## Migrate
+
+<img width="1792" alt="Screenshot 2024-03-13 at 10 48 42 PM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/e7fa92d4-16d7-4960-816f-43137b403e67">
+
+<img width="1792" alt="Screenshot 2024-03-13 at 10 49 35 PM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/f4e55c63-be78-4e13-8391-40a414d7e9e6">
+
 ## Update Composer
+
+<img width="1173" alt="Screenshot 2024-03-13 at 10 50 27 PM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/844f2c61-2109-497c-b155-88315c7e7230">
+
 ## View WebSocket Logs
 
+<img width="1115" alt="Screenshot 2024-03-13 at 10 50 37 PM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/5cf5629c-f553-4015-a4f1-987242ebdc2f">
 
-```bash
-git clone git@github.com:CarbonORM/CarbonWordPress.git
-```
+## License and TOA
+
+We operate under the standard [MIT License viewed here](https://github.com/CarbonORM/CarbonWordPress/blob/main/LICENSE). By downloading and using this plugin you agree to user data collection by access and usage  analytic tracking. You agree to automatic updates to be preformed and concent to the liceneses of all dependancies. This plugin WILL attempt to use the [Composer](https://getcomposer.org/) package manager to install and/or resolve all required dependancies which are listed in the [composer.json](https://github.com/CarbonORM/CarbonWordPress/blob/main/composer.json) file. These depdancies may change and any sub dependancies are also subject to change. The user interface is an [Open Source](https://github.com/CarbonORM/CarbonORM.dev), [GitHub hosted](https://github.com/CarbonORM/CarbonORM.dev/actions), project that is compiled and dynamically fetched real-time. Requests to [https://miles.systems/](https://miles.systems/) maybe fired from the backend to facillitate license based features. 
+
