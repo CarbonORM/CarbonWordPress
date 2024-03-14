@@ -26,16 +26,18 @@
   },
   "scripts": {
     "post-install-cmd": [
-      "@githooks"
+      "PhpGitHooks\\PhpGitHooks::install"
     ],
-    "githooks": [
-      "git config core.hooksPath .githooks",
-      "chmod +x .githooks/*"
+    "post-update-cmd": [
+      "PhpGitHooks\\PhpGitHooks::install"
     ]
   },
   "config": {
     "allow-plugins": {
       "composer/installers": true
     }
+  },
+  "require-dev": {
+    "richardtmiles/php-git-hooks": "dev-main"
   }
 }
