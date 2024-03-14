@@ -4831,12 +4831,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RichardTMiles/php-git-hooks.git",
-                "reference": "88b356a16f827a1285f2aaa825655073c38cb6e5"
+                "reference": "e806e8b664f2a5049f65d6ced9cd0dfb9ff40a03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RichardTMiles/php-git-hooks/zipball/88b356a16f827a1285f2aaa825655073c38cb6e5",
-                "reference": "88b356a16f827a1285f2aaa825655073c38cb6e5",
+                "url": "https://api.github.com/repos/RichardTMiles/php-git-hooks/zipball/e806e8b664f2a5049f65d6ced9cd0dfb9ff40a03",
+                "reference": "e806e8b664f2a5049f65d6ced9cd0dfb9ff40a03",
                 "shasum": ""
             },
             "require": {
@@ -4865,7 +4865,7 @@
                 "issues": "https://github.com/RichardTMiles/php-git-hooks/issues",
                 "source": "https://github.com/RichardTMiles/php-git-hooks/tree/main"
             },
-            "time": "2024-03-14T07:41:45+00:00"
+            "time": "2024-03-14T07:45:04+00:00"
         }
     ],
     "aliases": [],
