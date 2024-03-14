@@ -19,7 +19,7 @@
   "require": {
     "ext-sockets": "*",
     "composer/installers": "^2.0@dev",
-    "carbonorm/carbonphp": "20.1.*",
+    "carbonorm/carbonphp": "dev-lts",
     "wp-cli/wp-cli-bundle": "dev-main",
     "ext-posix": "*",
     "ext-pcntl": "*"

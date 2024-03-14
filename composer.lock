@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36b2f2a596f1a5d7f939b78a352cb1b9",
+    "content-hash": "37e243ddfd5b14cc014607f5fcdaff61",
     "packages": [
         {
             "name": "carbonorm/carbonphp",
-            "version": "20.1.9",
+            "version": "dev-lts",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CarbonORM/CarbonPHP.git",
-                "reference": "b9fee8ee78b7c67815207b27036a28d24d08b68c"
+                "reference": "4483e99aaf16f7555208b0fa656de370bccbf7e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CarbonORM/CarbonPHP/zipball/b9fee8ee78b7c67815207b27036a28d24d08b68c",
-                "reference": "b9fee8ee78b7c67815207b27036a28d24d08b68c",
+                "url": "https://api.github.com/repos/CarbonORM/CarbonPHP/zipball/4483e99aaf16f7555208b0fa656de370bccbf7e4",
+                "reference": "4483e99aaf16f7555208b0fa656de370bccbf7e4",
                 "shasum": ""
             },
             "require": {
@@ -41,9 +41,11 @@
                 "phpmetrics/phpmetrics": ">=2.7",
                 "phpunit/phpunit": ">=9.5",
                 "phpunit/phpunit-selenium": ">=9.0.1",
+                "richardtmiles/php-git-hooks": "^0.2.5",
                 "se/selenium-server-standalone": ">=3.141.59",
                 "wp-cli/wp-cli-bundle": ">=2.6.0"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -88,9 +90,9 @@
             ],
             "support": {
                 "issues": "https://github.com/CarbonORM/CarbonPHP/issues",
-                "source": "https://github.com/CarbonORM/CarbonPHP/tree/20.1.9"
+                "source": "https://github.com/CarbonORM/CarbonPHP/tree/lts"
             },
-            "time": "2024-03-13T17:03:56+00:00"
+            "time": "2024-03-14T09:01:05+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -3892,12 +3894,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-cli/media-command.git",
-                "reference": "0a7982614628d4fc6d6c9c4b8142a759ba9c4812"
+                "reference": "210cccf80f4faa38c0c608768089edf7acf2b319"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-cli/media-command/zipball/0a7982614628d4fc6d6c9c4b8142a759ba9c4812",
-                "reference": "0a7982614628d4fc6d6c9c4b8142a759ba9c4812",
+                "url": "https://api.github.com/repos/wp-cli/media-command/zipball/210cccf80f4faa38c0c608768089edf7acf2b319",
+                "reference": "210cccf80f4faa38c0c608768089edf7acf2b319",
                 "shasum": ""
             },
             "require": {
@@ -3947,7 +3949,7 @@
                 "issues": "https://github.com/wp-cli/media-command/issues",
                 "source": "https://github.com/wp-cli/media-command/tree/main"
             },
-            "time": "2024-02-22T11:21:53+00:00"
+            "time": "2024-03-14T09:04:20+00:00"
         },
         {
             "name": "wp-cli/mustangostang-spyc",
@@ -4831,12 +4833,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RichardTMiles/php-git-hooks.git",
-                "reference": "b10214d996eef15265154b0aa6623206fd187b4a"
+                "reference": "fad4ca474c9ec724fbaefdaab0a9be7650622646"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RichardTMiles/php-git-hooks/zipball/b10214d996eef15265154b0aa6623206fd187b4a",
-                "reference": "b10214d996eef15265154b0aa6623206fd187b4a",
+                "url": "https://api.github.com/repos/RichardTMiles/php-git-hooks/zipball/fad4ca474c9ec724fbaefdaab0a9be7650622646",
+                "reference": "fad4ca474c9ec724fbaefdaab0a9be7650622646",
                 "shasum": ""
             },
             "require": {
@@ -4863,15 +4865,16 @@
             "description": "version and release management",
             "support": {
                 "issues": "https://github.com/RichardTMiles/php-git-hooks/issues",
-                "source": "https://github.com/RichardTMiles/php-git-hooks/tree/0.2.4"
+                "source": "https://github.com/RichardTMiles/php-git-hooks/tree/main"
             },
-            "time": "2024-03-14T07:48:41+00:00"
+            "time": "2024-03-14T09:03:46+00:00"
         }
     ],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
         "composer/installers": 20,
+        "carbonorm/carbonphp": 20,
         "wp-cli/wp-cli-bundle": 20,
         "richardtmiles/php-git-hooks": 20
     },
