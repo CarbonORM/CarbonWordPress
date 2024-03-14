@@ -109,7 +109,7 @@ if (count($revision_exploded) !== 3) {
 
 $addNewTag = static function ($tag, $versionBumpType): void {
 
-    $pushTags = static function($tag, $releaseName = 'patch') {
+    $pushTags = static function($tag, $releaseName = 'patch', $releaseNotes = '') {
 
         $rootDir = dirname(__DIR__);
 
@@ -118,11 +118,19 @@ $addNewTag = static function ($tag, $versionBumpType): void {
         Background::executeAndCheckStatus("git add $rootDir/composer.json && git commit -m \"Changing our version in composer.json to ($tag).\"");
 
         // todo get the last major / minor release name and add it to patches automagically
-        Background::executeAndCheckStatus("git tag -s -a $tag -m \"release: (" . $releaseName . ") revision: ($tag)\"");
+        Background::executeAndCheckStatus("git tag -s -a $tag -m \"release: (" . $releaseName . ") revision: ($tag)\ notes: ($releaseNotes)\"");
 
         ColorCode::colorCode('Going to commit a TAG mid GitHook. Output in the CLI will show two pushes to git. This is expected.', iColorCode::MAGENTA);
 
         Background::executeAndCheckStatus("git push --tags --no-verify");
+
+        if ('patch' === $releaseName) {
+
+            return;
+
+        }
+
+        Background::executeAndCheckStatus("gh release create $tag --title '" . preg_quote($releaseName, "'") . "' --notes '" . preg_quote($releaseNotes, "'") . "'");
 
     };
 
@@ -146,23 +154,17 @@ $addNewTag = static function ($tag, $versionBumpType): void {
 
     } while ($releaseName === '');
 
-    $pushTags($tag, $releaseName);
-
     do {
 
-        ColorCode::colorCode("Enter a release title and use/reference ($releaseName) (@link: https://github.com/RichardTMiles/CarbonPHP/releases)", iColorCode::MAGENTA);
+        ColorCode::colorCode("Enter release notes and use/reference ($releaseName) (@link: https://github.com/RichardTMiles/CarbonPHP/releases)", iColorCode::MAGENTA);
 
-        $releaseTitle = `exec < /dev/tty && php -r 'echo (\$r = readline()) ? \$r : "";'`;
+        $releaseNotes = `exec < /dev/tty && php -r 'echo (\$r = readline()) ? \$r : "";'`;
 
-    } while ($releaseTitle === '');
-
-    Background::executeAndCheckStatus("git tag -a $tag -m \"" . $releaseName . " revision $tag\"");
-
-    ColorCode::colorCode('Please add additional notes (type "done" alone on a new line to complete):', iColorCode::MAGENTA);
-
-    $releaseNotes = '';
+    } while ($releaseNotes === '');
 
     $done = false;
+
+    ColorCode::colorCode('Please add additional notes (type "done" alone on a new line to complete):', iColorCode::MAGENTA);
 
     do {
 
@@ -180,9 +182,9 @@ $addNewTag = static function ($tag, $versionBumpType): void {
 
     } while (!$done);
 
-    Background::executeAndCheckStatus("gh release create $tag --title '" . preg_quote($releaseTitle, "'") . "' --notes '" . preg_quote($releaseNotes, "'") . "'");
+    $pushTags($tag, $releaseName, $releaseNotes);
 
-    ColorCode::colorCode("Pushing Git Tag ($tag) Finished ($releaseTitle).");
+    ColorCode::colorCode("Pushing Git Tag ($tag) Finished ($releaseName).");
 
 };
 
