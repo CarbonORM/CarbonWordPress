@@ -3,11 +3,11 @@
 namespace CarbonWordPress;
 
 use CarbonPHP\Abstracts\ColorCode;
+use CarbonPHP\Abstracts\GitHub;
 use CarbonPHP\Application;
 use CarbonPHP\CarbonPHP;
 use CarbonPHP\Abstracts\Background;
 use CarbonPHP\Error\PublicAlert;
-use CarbonPHP\Programs\Deployment;
 use CarbonPHP\Programs\Migrate;
 
 class WordPressApplication extends Application
@@ -22,7 +22,7 @@ class WordPressApplication extends Application
     {
 
         // these requests will be coming from external servers which will not be authenticated via wordpress
-        if (Deployment::github('c6wordpress/github')
+        if (GitHub::hooks('c6wordpress/github')
             || Migrate::enablePull([
                 CarbonPHP::$app_root
             ])) {
