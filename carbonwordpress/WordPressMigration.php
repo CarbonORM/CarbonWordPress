@@ -39,6 +39,8 @@ class WordPressMigration extends Migrate
         }
 
         $args = [
+            '--directories',
+            'wp-content/uploads,wp-content/themes,wp-content/plugins,wp-content/mu-plugins',
             '--local-url',
             $localServerUrl,
             '--remote-url',

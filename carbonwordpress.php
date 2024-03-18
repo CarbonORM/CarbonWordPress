@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name: CarbonPHP WordPress Plugin
+ * Plugin Name: CarbonWordPress
  * Plugin URI: https://www.carbonorm.dev/
  * Description: CarbonORM/CarbonPHP WordPress Plugin
  * Author: Richard Tyler Miles
@@ -37,7 +37,7 @@ add_action('init', static function () {
     $consentGiven = file_exists($consentFile);
 
     if (!$consentGiven
-        && ($_GET['page'] ?? '') === 'CarbonPHP'
+        && ($_GET['page'] ?? '') === 'CarbonORM'
         && ($_GET['action'] ?? '') === 'acceptLicense'
     ) {
 
@@ -59,11 +59,11 @@ add_action('init', static function () {
                 'deactivate-plugin_carbonwordpress/carbonwordpress.php'
             );
 
-            $accept_url = esc_url(admin_url('admin.php?action=acceptLicense&page=CarbonPHP'));
+            $accept_url = esc_url(admin_url('admin.php?action=acceptLicense&page=CarbonORM'));
 
             print <<<HTML
             <div class="notice notice-warning is-dismissible">
-                <p>CarbonPHP is a powerful tool that can help you build and maintain your WordPress site. By using CarbonPHP, you agree to the <a href="https://github.com/CarbonORM/CarbonWordPress/blob/main/LICENSE">CarbonWordPress License</a> and <a href="https://github.com/CarbonORM/CarbonWordPress/blob/main/README.md">Terms of Service</a> .</p>
+                <p>CarbonORM is a powerful set of tools that can help you build and maintain your WordPress site. By using CarbonORM, you agree to the <a href="https://github.com/CarbonORM/CarbonWordPress/blob/main/LICENSE">CarbonWordPress License</a> and <a href="https://github.com/CarbonORM/CarbonWordPress/blob/main/README.md">Terms of Service</a>.</p>
                 <p>
                     <a href="$accept_url" class="button button-primary">Accept License</a>
                     <a href="$deactivate_url" class="button button-danger">Deactivate Plugin</a>
@@ -229,10 +229,10 @@ add_action('init', static function () {
 
     // this is what will load on our plugin page, and if setup is not complete, we will load the guided setup
     add_action('admin_menu', static fn() => add_menu_page(
-        "CarbonPHP",
-        "CarbonPHP",
+        "CarbonORM",
+        "CarbonORM",
         'edit_posts',
-        'CarbonPHP',
+        'CarbonORM',
         static fn() => print <<<HTML
                     <div id="root" style="height: 100%;">
                     Loading CarbonORM...

@@ -25,9 +25,7 @@ class Configuration implements iConfig {
             // ERRORS on point
             CarbonPHP::ERROR => [
                 CarbonPHP::LOCATION => CarbonPHP::$app_root . 'logs' . DS,
-                CarbonPHP::LEVEL => E_ALL | E_USER_DEPRECATED | E_DEPRECATED | E_RECOVERABLE_ERROR | E_STRICT
-                    | E_USER_NOTICE | E_USER_WARNING | E_USER_ERROR | E_COMPILE_WARNING | E_COMPILE_ERROR
-                    | E_CORE_WARNING | E_CORE_ERROR | E_NOTICE | E_PARSE | E_WARNING | E_ERROR,  // php ini level
+                CarbonPHP::LEVEL => E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT,  // php ini level
                 CarbonPHP::STORE => true,      // Database if specified and / or File 'LOCATION' in your system
                 CarbonPHP::SHOW => true,       // Show errors on browser
                 CarbonPHP::FULL => true        // Generate custom stacktrace will high detail - DO NOT set to TRUE in PRODUCTION
