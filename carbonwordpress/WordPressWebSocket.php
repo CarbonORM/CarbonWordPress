@@ -7,6 +7,7 @@ use CarbonPHP\Error\ThrowableHandler;
 use CarbonPHP\Interfaces\iColorCode;
 use CarbonPHP\Programs\WebSocket;
 use Error;
+use Throwable;
 
 class WordPressWebSocket extends WebSocket
 {

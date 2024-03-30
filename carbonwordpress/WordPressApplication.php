@@ -42,7 +42,7 @@ class WordPressApplication extends Application
 
         $catLogs = static function (string $program) {
             $abspath = ABSPATH;
-            $cmd = "cd '$abspath' && tail -n 1000 ./logs/$program.txt";
+            $cmd = "cd '$abspath' && tail -n 10000 ./logs/$program.txt";
             print ">> $cmd\n";
             print shell_exec($cmd);
             exit(0);

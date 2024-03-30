@@ -21,6 +21,8 @@ class WordPressMigration extends Migrate
 
         $remoteServerUrl = $_POST['remoteURL'] ?? null;
 
+        $remoteFoldersToTransfer = $_POST['remoteFoldersToTransfer'] ?? null;
+
         if (empty($remoteServerUrl)) {
 
             // todo - should I handle this differently
@@ -32,6 +34,7 @@ class WordPressMigration extends Migrate
 
         if (null === $localServerUrl) {
 
+            // todo - get the url from the wp options table?
             $localServerUrl = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://{$_SERVER['HTTP_HOST']}/";
 
             $localServerUrl = htmlspecialchars($localServerUrl, ENT_QUOTES, 'UTF-8');
@@ -39,17 +42,40 @@ class WordPressMigration extends Migrate
         }
 
         $args = [
-            '--directories',
-            'wp-content/uploads,wp-content/themes,wp-content/plugins,wp-content/mu-plugins',
             '--local-url',
             $localServerUrl,
             '--remote-url',
             $remoteServerUrl
         ];
 
+        if (!empty($remoteFoldersToTransfer)) {
+
+            $foldersArray = explode(',', $remoteFoldersToTransfer);
+
+            foreach ($foldersArray as &$folder) {
+
+                if (str_starts_with($folder, '/')) {
+
+                    $folder = ltrim($folder, '/');
+
+                }
+
+            }
+
+            unset($folder);
+
+            $args[] = '--directories';
+
+            $args[] = $remoteFoldersToTransfer;
+
+        }
+
         if (!empty($license)) {
+
             $args[] = '--license';
+
             $args[] = $license;
+
         }
 
         return CarbonWordPress::startProcessInBackground(self::MIGRATE, $args);
