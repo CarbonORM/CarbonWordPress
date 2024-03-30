@@ -89,7 +89,7 @@ class WordPressMigration extends Migrate
      */
     public static function getPastMigrations() {
         // Path to the 'tmp/' directory. Adjust it to your needs.
-        $directoryPath = ABSPATH . 'cache' . DIRECTORY_SEPARATOR . 'tmp';
+        $directoryPath = ABSPATH . Migrate::$migrationFolder;
 
         if (!is_dir($directoryPath)) {
             return '{}';

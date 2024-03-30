@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "479f64a226375d5246d4cb7a5e7c3434",
+    "content-hash": "5fe86b95b39cee8d8881d8ec396cd7ca",
     "packages": [
         {
             "name": "carbonorm/carbonphp",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/CarbonORM/CarbonPHP.git",
-                "reference": "389c68a0a344162f9c1648d75b4ff8c224b880c4"
+                "reference": "365d1b2e769a86af279e3c82cb620aa64f04033b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CarbonORM/CarbonPHP/zipball/389c68a0a344162f9c1648d75b4ff8c224b880c4",
-                "reference": "389c68a0a344162f9c1648d75b4ff8c224b880c4",
+                "url": "https://api.github.com/repos/CarbonORM/CarbonPHP/zipball/365d1b2e769a86af279e3c82cb620aa64f04033b",
+                "reference": "365d1b2e769a86af279e3c82cb620aa64f04033b",
                 "shasum": ""
             },
             "require": {
@@ -92,7 +92,7 @@
                 "issues": "https://github.com/CarbonORM/CarbonPHP/issues",
                 "source": "https://github.com/CarbonORM/CarbonPHP/tree/lts"
             },
-            "time": "2024-03-18T08:25:35+00:00"
+            "time": "2024-03-30T03:30:01+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -251,12 +251,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "61e2d246103c84d096aa17352b837451070fb80f"
+                "reference": "b12a88b7f3313e9dbae5b58085323b8328d10296"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/61e2d246103c84d096aa17352b837451070fb80f",
-                "reference": "61e2d246103c84d096aa17352b837451070fb80f",
+                "url": "https://api.github.com/repos/composer/composer/zipball/b12a88b7f3313e9dbae5b58085323b8328d10296",
+                "reference": "b12a88b7f3313e9dbae5b58085323b8328d10296",
                 "shasum": ""
             },
             "require": {
@@ -358,7 +358,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-15T14:08:50+00:00"
+            "time": "2024-03-22T08:29:43+00:00"
         },
         {
             "name": "composer/installers",
@@ -582,12 +582,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/pcre.git",
-                "reference": "4775f35b2d70865807c89d32c8e7385b86eb0ace"
+                "reference": "5b16e25a5355f1f3afdfc2f954a0a80aec4826a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/pcre/zipball/4775f35b2d70865807c89d32c8e7385b86eb0ace",
-                "reference": "4775f35b2d70865807c89d32c8e7385b86eb0ace",
+                "url": "https://api.github.com/repos/composer/pcre/zipball/5b16e25a5355f1f3afdfc2f954a0a80aec4826a8",
+                "reference": "5b16e25a5355f1f3afdfc2f954a0a80aec4826a8",
                 "shasum": ""
             },
             "require": {
@@ -630,7 +630,7 @@
             ],
             "support": {
                 "issues": "https://github.com/composer/pcre/issues",
-                "source": "https://github.com/composer/pcre/tree/3.1.2"
+                "source": "https://github.com/composer/pcre/tree/3.1.3"
             },
             "funding": [
                 {
@@ -646,7 +646,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-07T15:38:35+00:00"
+            "time": "2024-03-19T10:26:25+00:00"
         },
         {
             "name": "composer/semver",
@@ -813,16 +813,16 @@
         },
         {
             "name": "composer/xdebug-handler",
-            "version": "3.0.3",
+            "version": "3.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/xdebug-handler.git",
-                "reference": "ced299686f41dce890debac69273b47ffe98a40c"
+                "reference": "4f988f8fdf580d53bdb2d1278fe93d1ed5462255"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/xdebug-handler/zipball/ced299686f41dce890debac69273b47ffe98a40c",
-                "reference": "ced299686f41dce890debac69273b47ffe98a40c",
+                "url": "https://api.github.com/repos/composer/xdebug-handler/zipball/4f988f8fdf580d53bdb2d1278fe93d1ed5462255",
+                "reference": "4f988f8fdf580d53bdb2d1278fe93d1ed5462255",
                 "shasum": ""
             },
             "require": {
@@ -833,7 +833,7 @@
             "require-dev": {
                 "phpstan/phpstan": "^1.0",
                 "phpstan/phpstan-strict-rules": "^1.1",
-                "symfony/phpunit-bridge": "^6.0"
+                "phpunit/phpunit": "^8.5 || ^9.6 || ^10.5"
             },
             "type": "library",
             "autoload": {
@@ -857,9 +857,9 @@
                 "performance"
             ],
             "support": {
-                "irc": "irc://irc.freenode.org/composer",
+                "irc": "ircs://irc.libera.chat:6697/composer",
                 "issues": "https://github.com/composer/xdebug-handler/issues",
-                "source": "https://github.com/composer/xdebug-handler/tree/3.0.3"
+                "source": "https://github.com/composer/xdebug-handler/tree/3.0.4"
             },
             "funding": [
                 {
@@ -875,7 +875,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-02-25T21:32:43+00:00"
+            "time": "2024-03-26T18:29:49+00:00"
         },
         {
             "name": "eftec/bladeone",
@@ -1663,12 +1663,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "1a7abb7cf0304c6c4ecea592d73e430b1263e598"
+                "reference": "3ecfc9e5c9ec828260091c9e30417dabead0ddf8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/1a7abb7cf0304c6c4ecea592d73e430b1263e598",
-                "reference": "1a7abb7cf0304c6c4ecea592d73e430b1263e598",
+                "url": "https://api.github.com/repos/symfony/console/zipball/3ecfc9e5c9ec828260091c9e30417dabead0ddf8",
+                "reference": "3ecfc9e5c9ec828260091c9e30417dabead0ddf8",
                 "shasum": ""
             },
             "require": {
@@ -1748,7 +1748,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-18T14:31:07+00:00"
+            "time": "2024-03-28T22:31:42+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -1756,12 +1756,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "40f7a3ad8311290f092c2940c642e10464536aee"
+                "reference": "69b75b9bbb1484285c0609ae4a94ac2d1ee0adf2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/40f7a3ad8311290f092c2940c642e10464536aee",
-                "reference": "40f7a3ad8311290f092c2940c642e10464536aee",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/69b75b9bbb1484285c0609ae4a94ac2d1ee0adf2",
+                "reference": "69b75b9bbb1484285c0609ae4a94ac2d1ee0adf2",
                 "shasum": ""
             },
             "require": {
@@ -1811,7 +1811,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-15T13:33:12+00:00"
+            "time": "2024-03-24T21:26:19+00:00"
         },
         {
             "name": "symfony/finder",
@@ -1819,12 +1819,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "beeac2ba50a5dd729d8a23507ad09cdd0f82110c"
+                "reference": "9bfc6ffa24b1b66f7c3c9f71b2870e1413c1ce03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/beeac2ba50a5dd729d8a23507ad09cdd0f82110c",
-                "reference": "beeac2ba50a5dd729d8a23507ad09cdd0f82110c",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/9bfc6ffa24b1b66f7c3c9f71b2870e1413c1ce03",
+                "reference": "9bfc6ffa24b1b66f7c3c9f71b2870e1413c1ce03",
                 "shasum": ""
             },
             "require": {
@@ -1875,7 +1875,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-16T21:21:05+00:00"
+            "time": "2024-03-20T15:26:56+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -2440,12 +2440,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "ef909caff8547b26f72dff049ea24f9b07a3701a"
+                "reference": "cebb2aec790b0fba2489af42a6c60933203e6390"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/ef909caff8547b26f72dff049ea24f9b07a3701a",
-                "reference": "ef909caff8547b26f72dff049ea24f9b07a3701a",
+                "url": "https://api.github.com/repos/symfony/process/zipball/cebb2aec790b0fba2489af42a6c60933203e6390",
+                "reference": "cebb2aec790b0fba2489af42a6c60933203e6390",
                 "shasum": ""
             },
             "require": {
@@ -2493,7 +2493,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-02-22T20:28:06+00:00"
+            "time": "2024-03-20T15:26:56+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -2584,12 +2584,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "ef964850371aca5def9fc8a3059d9b1690bb3b6c"
+                "reference": "29dc30bf66fe1a2b70c31543012bc108a81dc3c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/ef964850371aca5def9fc8a3059d9b1690bb3b6c",
-                "reference": "ef964850371aca5def9fc8a3059d9b1690bb3b6c",
+                "url": "https://api.github.com/repos/symfony/string/zipball/29dc30bf66fe1a2b70c31543012bc108a81dc3c5",
+                "reference": "29dc30bf66fe1a2b70c31543012bc108a81dc3c5",
                 "shasum": ""
             },
             "require": {
@@ -2663,7 +2663,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-08T12:55:53+00:00"
+            "time": "2024-03-20T15:26:56+00:00"
         },
         {
             "name": "wp-cli/cache-command",
