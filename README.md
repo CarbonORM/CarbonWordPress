@@ -59,21 +59,21 @@ most technical.
 # Usage 
 
 In your admin panel, after activation, you will see the CarbonORM tab. This is where all C6 guided user actions will take palce.
-<img width="1792" alt="Screenshot 2024-03-13 at 10 46 53 PM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/c0b42a5c-db50-4e54-af34-2dd13b035a35">
+<img style='height: 100%; width: 100%; object-fit: contain' alt="Screenshot 2024-03-13 at 10 46 53 PM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/c0b42a5c-db50-4e54-af34-2dd13b035a35">
 
 ## Migrate
 
-<img width="1792" alt="Screenshot 2024-03-13 at 10 48 42 PM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/e7fa92d4-16d7-4960-816f-43137b403e67">
+<img style='height: 100%; width: 100%; object-fit: contain' alt="Screenshot 2024-03-13 at 10 48 42 PM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/e7fa92d4-16d7-4960-816f-43137b403e67">
 
-<img width="1792" alt="Screenshot 2024-03-13 at 10 49 35 PM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/f4e55c63-be78-4e13-8391-40a414d7e9e6">
+<img style='height: 100%; width: 100%; object-fit: contain' alt="Screenshot 2024-03-13 at 10 49 35 PM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/f4e55c63-be78-4e13-8391-40a414d7e9e6">
 
 ## Update Composer
 
-<img width="1173" alt="Screenshot 2024-03-13 at 10 50 27 PM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/844f2c61-2109-497c-b155-88315c7e7230">
+<img style='height: 100%; width: 100%; object-fit: contain' alt="Screenshot 2024-03-13 at 10 50 27 PM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/844f2c61-2109-497c-b155-88315c7e7230">
 
 ## View WebSocket Logs
 
-<img width="1115" alt="Screenshot 2024-03-13 at 10 50 37 PM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/5cf5629c-f553-4015-a4f1-987242ebdc2f">
+<img style='height: 100%; width: 100%; object-fit: contain' alt="Screenshot 2024-03-13 at 10 50 37 PM" src="https://github.com/CarbonORM/CarbonWordPress/assets/9538357/5cf5629c-f553-4015-a4f1-987242ebdc2f">
 
 ## License and TOA
 
