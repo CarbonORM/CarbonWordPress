@@ -50,8 +50,8 @@ class WordPressApplication extends Application
 
         putenv('PATH=/bin:/usr/bin/:/usr/sbin/:/usr/local/bin:$PATH');
 
-        if (self::regexMatch('#c6wordpress/logs/websocket#', $requiresLoginNotice(static fn () => $catLogs('WordPressWebSocket')))
-            || self::regexMatch('#c6wordpress/logs/migrate#', $requiresLoginNotice(static fn () => $catLogs('migrate')))
+        if (self::regexMatch('#c6wordpress/logs/websocket#', $requiresLoginNotice(static fn() => $catLogs('WordPressWebSocket')))
+            || self::regexMatch('#c6wordpress/logs/migrate#', $requiresLoginNotice(static fn() => $catLogs('migrate')))
             || self::regexMatch('#c6wordpress/migrate(?:/([^/]*))?#', static function ($subAction = null) use ($requiresLoginNotice) {
 
                 switch ($subAction) {
@@ -65,6 +65,20 @@ class WordPressApplication extends Application
                                 'Command' => $cmd,
                                 'output' => $resp
                             ]);
+
+                        })();
+                        exit(0);
+                    case 'addLicense':
+                        $requiresLoginNotice(static function () {
+
+                            $license = $_POST['license'];
+                            $licensePath = ABSPATH . 'CarbonWordPressLicense.php';
+                            file_put_contents($licensePath, <<<PHP
+                                                        <?php
+                                                        return '$license';
+                                                        PHP);
+
+                            CarbonWordPress::getCarbonWordPressLicense();
 
                         })();
                         exit(0);

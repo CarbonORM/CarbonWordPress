@@ -180,9 +180,19 @@ add_action('init', static function () {
 
             $pastMigrations = WordPressMigration::getPastMigrations();
 
+            $carbonWordPressLicense = CarbonWordPress::getCarbonWordPressLicense();
+
+            $wordPressUser = CarbonWordPress::getCurrentUser();
+
+            $wordPressUserString = $wordPressUser->data->user_email;
+
         }
 
     }
+
+    $wordPressUserString ??= '';
+
+    $carbonWordPressLicense ??= '';
 
     $pastMigrations ??= '';
 
@@ -227,6 +237,9 @@ add_action('init', static function () {
 
     }
 
+
+
+
     // this is what will load on our plugin page, and if setup is not complete, we will load the guided setup
     add_action('admin_menu', static fn() => add_menu_page(
         "CarbonORM",
@@ -245,6 +258,7 @@ add_action('init', static function () {
                         C6PastMigrations: `$pastMigrations`,
                         C6WebsocketRunning: `$isWebsocketRunning`,
                         C6WebsocketRunningCommand: `$cmd`,
+                        C6WordPressLicense: `$carbonWordPressLicense`,
                         C6MigrateLicense: `$migrateLicense`,
                         C6WordPressVersion: '$carbonWordPressVersion',
                         C6CarbonPHPVersion: '$carbonPHPVersion',
@@ -254,6 +268,7 @@ add_action('init', static function () {
                         C6PHPVersion: '$phpVersion',
                         C6WhoAmI: '$whoami',
                         C6Groups: [ $groups ],
+                        C6WordPressUser: '$wordPressUserString',
                         C6SetupComplete: $setupComplete,
                     };
                         

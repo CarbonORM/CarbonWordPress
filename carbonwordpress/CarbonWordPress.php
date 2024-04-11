@@ -69,10 +69,29 @@ class CarbonWordPress
 
     }
 
+
+    public static function getCarbonWordPressLicense(): string
+    {
+        $licensePath = ABSPATH . 'CarbonWordPressLicense.php';
+        if (!file_exists($licensePath)) {
+            return '';
+        }
+        return include $licensePath;
+    }
+
+    public static function getCurrentUser(bool $useCache = true) {
+        static $user;
+        if ($useCache && $user) {
+            return $user;
+        }
+        $user = wp_get_current_user();
+        return $user;
+    }
+
     public static function isPrivilegedUser(): bool
     {
         // todo - cache for non socket requests?
-        $user = wp_get_current_user();
+        $user = self::getCurrentUser();
         if (array_intersect(['editor', 'administrator', 'author'], $user->roles)) {
             return true;
         }
