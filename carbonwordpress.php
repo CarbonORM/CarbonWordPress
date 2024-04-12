@@ -116,7 +116,7 @@ add_action('init', static function () {
 
     }
 
-// If composer isn't setup we will attempt to install it, and then load the autoload
+        // If composer isn't setup we will attempt to install it, and then load the autoload
     if (false === $autoloadPath) {
 
         if (null === $composerExecPath) {
@@ -185,6 +185,12 @@ add_action('init', static function () {
             $wordPressUser = CarbonWordPress::getCurrentUser();
 
             $wordPressUserString = $wordPressUser->data->user_email;
+
+            add_action( 'wp_enqueue_scripts', function() {
+                wp_register_script( 'CarbonWordPress', '',);
+                wp_enqueue_script( 'CarbonWordPress' );
+                wp_add_inline_script( 'CarbonWordPress', /** @lang JavaScript */ "window.c6websocket = new WebSocket('ws' + (window.location.protocol === 'https:' ? 's' : '') + '://' + window.location.host + '/carbonorm/websocket');");
+            } );
 
         }
 
